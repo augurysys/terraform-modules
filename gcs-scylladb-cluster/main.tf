@@ -52,6 +52,8 @@ resource "google_compute_instance" "scylladb" {
   service_account {
     scopes = ["compute-ro"]
   }
+
+  allow_stopping_for_update = true
 }
 
 locals {
