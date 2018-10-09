@@ -23,6 +23,7 @@ resource "google_compute_instance" "scylladb" {
   machine_type = "${var.machine_type}"
   zone         = "${format("%s-%s", var.region, element(split(",", var.zones), count.index % length(split(",", var.zones))))}"
 
+  allow_stopping_for_update = false
   boot_disk {
     initialize_params {
       image = "${var.boot_disk_image}"
