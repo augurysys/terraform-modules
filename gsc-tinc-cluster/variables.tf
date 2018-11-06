@@ -3,7 +3,7 @@ variable "cluster_size" {
 }
 
 variable "name" {}
-variable "project_id" { }
-variable "subnetwork" { }
-variable "region" { }
-variable "zones" { }
+variable "project_id" {}
+variable "subnetwork" {}
+variable "region" {}
+variable "zones" {}
