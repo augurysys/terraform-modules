@@ -4,7 +4,6 @@ resource "google_container_node_pool" "default_np" {
   name       = "${var.name}-k8s-node-pool"
   zone       = "${var.zone}"
   cluster    = "${google_container_cluster.default.name}"
-  node_count = "${var.autoscaling_mix}"
 
   autoscaling = {
     min_node_count = "${var.autoscaling_mix}"
