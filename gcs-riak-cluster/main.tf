@@ -64,18 +64,16 @@ resource "google_compute_instance_group" "riak_nodes" {
   }
 }
 
-resource "google_compute_health_check" "riak_http" {
+resource "google_compute_health_check" "riak_tcp" {
   project = "${var.project}"
-  name    = "riak-http"
+  name    = "riak-tcp"
 
   timeout_sec        = 1
   check_interval_sec = 1
-  healthy_threshold  = 10
+  healthy_threshold  = 2
 
-  http_health_check {
-    host         = "80"
-    port         = "8098"
-    request_path = "/ping"
+  tcp_health_check {
+    port = "8087"
   }
 }
 
@@ -90,7 +88,7 @@ resource "google_compute_region_backend_service" "riak_pb" {
     group = "${google_compute_instance_group.riak_nodes.self_link}"
   }
 
-  health_checks = ["${google_compute_health_check.riak_http.self_link}"]
+  health_checks = ["${google_compute_health_check.riak_tcp.self_link}"]
 }
 
 resource "google_compute_forwarding_rule" "riak_pb" {
@@ -113,7 +111,7 @@ resource "google_compute_firewall" "allow_riak_health_check" {
 
   allow {
     protocol = "tcp"
-    ports    = ["8087", "8098"]
+    ports    = ["8087"]
   }
 
   source_ranges = ["130.211.0.0/22", "35.191.0.0/16"]
