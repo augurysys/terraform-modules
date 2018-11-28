@@ -10,6 +10,8 @@ resource "google_container_node_pool" "default_np" {
     max_node_count = "${var.autoscaling_max}"
   }
 
+  version = "${var.gke_version}"
+
   node_config = {
     machine_type    = "${var.machine_type}"
     local_ssd_count = "${var.local_ssd_count}"
