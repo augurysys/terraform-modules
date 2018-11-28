@@ -62,6 +62,11 @@ resource "google_compute_instance_group" "riak_nodes" {
     name = "http"
     port = "8098"
   }
+
+  named_port {
+    name = "handof"
+    port = "8099"
+  }
 }
 
 resource "google_compute_health_check" "riak_tcp" {
@@ -73,7 +78,7 @@ resource "google_compute_health_check" "riak_tcp" {
   healthy_threshold  = 2
 
   tcp_health_check {
-    port = "8087"
+    port = "8099"
   }
 }
 
@@ -96,7 +101,7 @@ resource "google_compute_forwarding_rule" "riak_pb" {
   region                = "${var.region}"
   name                  = "riak-pb"
   backend_service       = "${google_compute_region_backend_service.riak_pb.self_link}"
-  ports                 = ["8087"]
+  ports                 = ["8087", "8098"]
   ip_address            = "${google_compute_address.riak_backend.address}"
   network               = "${var.network}"
   subnetwork            = "${var.subnetwork}"
@@ -111,10 +116,10 @@ resource "google_compute_firewall" "allow_riak_health_check" {
 
   allow {
     protocol = "tcp"
-    ports    = ["8087"]
+    ports    = ["8099"]
   }
 
-  source_ranges = ["130.211.0.0/22", "35.191.0.0/16"]
+  source_ranges = ["35.191.0.0/16", "209.85.152.0/22", "209.85.204.0/22", "130.211.0.0/22"]
   target_tags   = ["riak"]
 }
 
