@@ -38,7 +38,7 @@ resource "google_compute_instance" "scylladb" {
 
   network_interface {
     subnetwork = "${var.subnetwork}"
-    address    = "${element(google_compute_address.scylladb.*.address, count.index)}"
+    address    = "${element(local.compute_addresses, count.index)}"
 
     access_config {
       // Ephemeral IP
@@ -59,6 +59,7 @@ resource "google_compute_instance" "scylladb" {
 }
 
 locals {
+  compute_addresses = "${google_compute_address.scylladb.*.address}"
   base_seeds = "${join(",", slice(google_compute_address.scylladb.*.address, 0, 2))}"
   seeds      = "${var.custom_seeds == "" ? local.base_seeds : join(",", list("${local.base_seeds}","${var.custom_seeds}"))}"
 }
