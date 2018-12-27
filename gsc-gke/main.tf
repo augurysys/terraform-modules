@@ -26,7 +26,6 @@ resource "google_container_cluster" "default" {
   description        = "augury's ${var.name} kubernetes cluster on gcloud"
   zone               = "${var.zone}"
   min_master_version = "${var.gke_version}"
-  node_version       = "${var.gke_version}"
   network            = "${var.network}"
   subnetwork         = "${var.subnetwork}"
 
