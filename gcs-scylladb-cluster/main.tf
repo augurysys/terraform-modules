@@ -60,8 +60,8 @@ resource "google_compute_instance" "scylladb" {
 
 locals {
   compute_addresses = "${google_compute_address.scylladb.*.address}"
-  base_seeds = "${join(",", slice(google_compute_address.scylladb.*.address, 0, 2))}"
-  seeds      = "${var.custom_seeds == "" ? local.base_seeds : join(",", list("${local.base_seeds}","${var.custom_seeds}"))}"
+  base_seeds        = "${join(",", slice(google_compute_address.scylladb.*.address, 0, 2))}"
+  seeds             = "${var.custom_seeds == "" ? local.base_seeds : join(",", list("${local.base_seeds}","${var.custom_seeds}"))}"
 }
 
 resource "google_compute_project_metadata_item" "scylladb_seeds" {

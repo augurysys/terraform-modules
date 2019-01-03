@@ -1,12 +1,13 @@
 resource "google_container_node_pool" "default_np" {
-  project = "${var.project_id}"
+  provider = "google-beta"
+  project  = "${var.project_id}"
 
-  name       = "${var.name}-k8s-node-pool"
-  zone       = "${var.zone}"
-  cluster    = "${google_container_cluster.default.name}"
+  name    = "${var.name}-k8s-node-pool"
+  zone    = "${var.zone}"
+  cluster = "${google_container_cluster.default.name}"
 
   autoscaling = {
-    min_node_count = "${var.autoscaling_mix}"
+    min_node_count = "${var.autoscaling_max}"
     max_node_count = "${var.autoscaling_max}"
   }
 
@@ -21,7 +22,34 @@ resource "google_container_node_pool" "default_np" {
   }
 }
 
+resource "google_container_node_pool" "algo_np" {
+  provider = "google-beta"
+  project  = "${var.project_id}"
+
+  name    = "${var.name}-k8s-algo-node-pool"
+  zone    = "${var.zone}"
+  cluster = "${google_container_cluster.default.name}"
+
+  autoscaling = {
+    min_node_count = "${var.algo_autoscaling_min}"
+    max_node_count = "${var.algo_autoscaling_max}"
+  }
+
+  version = "${var.gke_version}"
+
+  node_config = {
+    preemptible  = true
+    machine_type = "${var.algo_machine_type}"
+    disk_size_gb = "${var.algo_disk_size_gb}"
+
+    oauth_scopes = ["${var.auth_scops}"]
+
+    taint = ["${var.taint}"]
+  }
+}
+
 resource "google_container_cluster" "default" {
+  provider           = "google-beta"
   name               = "${var.name}"
   description        = "augury's ${var.name} kubernetes cluster on gcloud"
   zone               = "${var.zone}"

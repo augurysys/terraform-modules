@@ -22,8 +22,8 @@ resource "google_compute_instance" "riak" {
     }
   }
 
-  scratch_disk {}
-  scratch_disk {}
+  scratch_disk = {}
+  scratch_disk = {}
 
   network_interface {
     subnetwork = "${var.subnetwork}"
@@ -124,8 +124,8 @@ resource "google_compute_firewall" "allow_riak_health_check" {
 }
 
 locals {
- cluster_instance_public_ips = "${join(",", google_compute_instance.riak.*.network_interface.0.access_config.0.assigned_nat_ip )}"
- cluster_instance_private_ips = "${join(",", google_compute_instance.riak.*.network_interface.0.address )}"
+  cluster_instance_public_ips  = "${join(",", google_compute_instance.riak.*.network_interface.0.access_config.0.assigned_nat_ip )}"
+  cluster_instance_private_ips = "${join(",", google_compute_instance.riak.*.network_interface.0.address )}"
 }
 
 resource "google_compute_project_metadata_item" "cluster_instance_public_ips" {
