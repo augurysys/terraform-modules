@@ -7,7 +7,7 @@ resource "google_container_node_pool" "default_np" {
   cluster = "${google_container_cluster.default.name}"
 
   autoscaling = {
-    min_node_count = "${var.autoscaling_max}"
+    min_node_count = "${var.autoscaling_min}"
     max_node_count = "${var.autoscaling_max}"
   }
 
