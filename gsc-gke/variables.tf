@@ -36,9 +36,8 @@ variable "autoscaling_max" {
 }
 
 variable "algo_node_pool_enabled" {
-  default = "true" 
+  default = "true"
 }
-
 
 variable "algo_autoscaling_min" {
   default = 0
@@ -78,12 +77,22 @@ variable "auth_scops" {
 }
 
 variable "taint" {
-  type    = "list"
+  type = "list"
+
   default = [
     {
-      key = "cloud.google.com/gke-preemptible",
-      value = "true",
+      key    = "cloud.google.com/gke-preemptible"
+      value  = "true"
       effect = "NO_SCHEDULE"
-    }
+    },
   ]
+}
+
+
+variable "cluster_ipv4_cidr_block" {}
+variable "services_ipv4_cidr_block" {}
+
+variable "master_authorized_networks_cidrs" {
+  type = "list"
+  default = []
 }
