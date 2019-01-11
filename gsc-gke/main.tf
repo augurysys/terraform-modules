@@ -6,6 +6,8 @@ resource "google_container_node_pool" "default_np" {
   zone    = "${var.zone}"
   cluster = "${google_container_cluster.default.name}"
 
+  initial_node_count = 1
+
   autoscaling = {
     min_node_count = "${var.autoscaling_min}"
     max_node_count = "${var.autoscaling_max}"
@@ -19,6 +21,10 @@ resource "google_container_node_pool" "default_np" {
     disk_size_gb    = "${var.disk_size_gb}"
 
     oauth_scopes = ["${var.auth_scops}"]
+  }
+
+  lifecycle {
+    ignore_changes = ["initial_node_count"]
   }
 }
 
@@ -61,7 +67,7 @@ resource "google_container_cluster" "default" {
 
   private_cluster_config = {
     enable_private_nodes = true
-    master_ipv4_cidr_block = "172.16.0.0/28"
+    master_ipv4_cidr_block = "${var.master_ipv4_cidr_block}"
   }
 
   ip_allocation_policy = {
