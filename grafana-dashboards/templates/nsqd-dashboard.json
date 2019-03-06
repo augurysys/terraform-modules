@@ -38,7 +38,7 @@
         "avg": false,
         "current": true,
         "hideEmpty": false,
-        "hideZero": true,
+        "hideZero": false,
         "max": true,
         "min": false,
         "rightSide": true,
@@ -254,6 +254,6 @@
   },
   "timezone": "browser",
   "title": "Nsqd",
-  "uid": null,
+  "uid": "b_Sd_L9ik",
   "version": 1
 }
