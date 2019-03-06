@@ -1,26 +1,4 @@
 {
-  "__inputs": [
-  ],
-  "__requires": [
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "5.3.4"
-    },
-    {
-      "type": "panel",
-      "id": "graph",
-      "name": "Graph",
-      "version": "5.0.0"
-    },
-    {
-      "type": "datasource",
-      "id": "prometheus",
-      "name": "Prometheus",
-      "version": "5.0.0"
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -37,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": null,
+  "iteration": 1551861011204,
   "links": [],
   "panels": [
     {
@@ -82,16 +60,18 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(nsq_channel_depth{topic=\"tasks\"}) by (channel)",
+          "expr": "sum(nsq_channel_depth{topic!=\"events\", topic!=\"tasks\", topic!=\"alerts\"}) by (channel, topic)",
           "format": "time_series",
+          "hide": false,
           "intervalFactor": 1,
           "refId": "A"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
-      "title": "Tasks",
+      "title": "Algo",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -178,6 +158,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Events",
       "tooltip": {
@@ -220,29 +201,30 @@
   "refresh": false,
   "schemaVersion": 16,
   "style": "dark",
-  "tags": ["nsqd"],
+  "tags": [
+    "nsqd"
+  ],
   "templating": {
     "list": [
       {
-          "current": {
-              "text": "Prometheus",
-              "value": "Prometheus"
-          },
-          "hide": 0,
-          "label": null,
-          "name": "datasource",
-          "options": [
-
-          ],
-          "query": "prometheus",
-          "refresh": 1,
-          "regex": "",
-          "type": "datasource"
+        "current": {
+          "text": "Prometheus",
+          "value": "Prometheus"
+        },
+        "hide": 0,
+        "label": null,
+        "name": "datasource",
+        "options": [],
+        "query": "prometheus",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
       }
-  ]
+    ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {
