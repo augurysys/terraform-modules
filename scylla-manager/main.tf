@@ -38,6 +38,8 @@ resource "google_compute_instance" "scylladb_manager" {
 
   metadata_startup_script = "${data.template_file.init.rendered }"
 
+  tags = ["scylladb"]
+
   service_account {
     scopes = ["compute-ro"]
   }
