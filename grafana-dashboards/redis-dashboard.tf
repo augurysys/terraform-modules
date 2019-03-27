@@ -4,9 +4,9 @@ resource "kubernetes_config_map" "redis_dashboard" {
     namespace = "monitoring"
 
     labels = {
-      app = "prometheus-operator-grafana"
+      app               = "prometheus-operator-grafana"
       grafana_dashboard = "1"
-      release = "prometheus-operator"
+      release           = "prometheus-operator"
     }
   }
 

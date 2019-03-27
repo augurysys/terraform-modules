@@ -5,7 +5,6 @@ variable "subnetwork" {}
 
 variable "boot_disk_image" {}
 
-
 variable "machine_type" {
   default = "n1-standard-2"
 }

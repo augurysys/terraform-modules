@@ -36,7 +36,6 @@ resource "google_compute_instance" "scylladb" {
     device_name = "data"
   }
 
-
   network_interface {
     network_ip = "${element(google_compute_address.scylladb.*.address, count.index)}"
     subnetwork = "${var.subnetwork}"

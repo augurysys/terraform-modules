@@ -4,13 +4,14 @@ resource "kubernetes_config_map" "scylla_dashboards" {
     namespace = "monitoring"
 
     labels = {
-      app = "prometheus-operator-grafana"
+      app               = "prometheus-operator-grafana"
       grafana_dashboard = "1"
-      release = "prometheus-operator"
+      release           = "prometheus-operator"
     }
   }
 
   data {
-    "scylla-dash.3.0.json" = "${file("${path.module}/templates/scylla-dash.3.0.json")}"
+    "scylla-dash.3.0.json"    = "${file("${path.module}/templates/scylla-dash.3.0.json")}"
+    "scylla-manager.1.3.json" = "${file("${path.module}/templates/scylla-manager.1.3.json")}"
   }
 }
