@@ -15,9 +15,332 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 44,
+  "iteration": 1554023717607,
   "links": [],
   "panels": [
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Stackdriver",
+      "fill": 1,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 10,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "paceLength": 10,
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "aliasBy": "",
+          "alignOptions": [
+            {
+              "expanded": true,
+              "label": "Alignment options",
+              "options": [
+                {
+                  "label": "interpolate",
+                  "metricKinds": [
+                    "GAUGE"
+                  ],
+                  "text": "interpolate",
+                  "value": "ALIGN_INTERPOLATE",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "next older",
+                  "metricKinds": [
+                    "GAUGE"
+                  ],
+                  "text": "next older",
+                  "value": "ALIGN_NEXT_OLDER",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY",
+                    "DISTRIBUTION",
+                    "STRING",
+                    "VALUE_TYPE_UNSPECIFIED",
+                    "BOOL"
+                  ]
+                },
+                {
+                  "label": "min",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "min",
+                  "value": "ALIGN_MIN",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "max",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "max",
+                  "value": "ALIGN_MAX",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "mean",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "mean",
+                  "value": "ALIGN_MEAN",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "count",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "count",
+                  "value": "ALIGN_COUNT",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY",
+                    "BOOL"
+                  ]
+                },
+                {
+                  "label": "sum",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "sum",
+                  "value": "ALIGN_SUM",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY",
+                    "DISTRIBUTION"
+                  ]
+                },
+                {
+                  "label": "stddev",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "stddev",
+                  "value": "ALIGN_STDDEV",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "percent change",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "percent change",
+                  "value": "ALIGN_PERCENT_CHANGE",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                }
+              ]
+            }
+          ],
+          "alignmentPeriod": "stackdriver-auto",
+          "crossSeriesReducer": "REDUCE_MEAN",
+          "defaultProject": "loading project...",
+          "filters": [
+            "resource.label.job_name",
+            "=",
+            "samples-pipeline"
+          ],
+          "groupBys": [],
+          "lastQuery": "aggregation.alignmentPeriod=+60s&aggregation.crossSeriesReducer=REDUCE_MEAN&aggregation.perSeriesAligner=ALIGN_INTERPOLATE&filter=metric.type=\"dataflow.googleapis.com/job/billable_shuffle_data_processed\"&interval.endTime=2019-03-31T09:15:40Z&interval.startTime=2019-03-31T08:15:40Z&view=FULL",
+          "lastQueryError": "",
+          "metricKind": "GAUGE",
+          "metricType": "dataflow.googleapis.com/job/current_num_vcpus",
+          "perSeriesAligner": "ALIGN_INTERPOLATE",
+          "refId": "A",
+          "service": "",
+          "unit": "1",
+          "usedAlignmentPeriod": 60,
+          "valueType": "INT64"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Amount of vCPUs in use",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "fill": 1,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 8,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "paceLength": 10,
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(container_memory_usage_bytes{container_name=\"iot-service\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "iot service memory consumption",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "decbytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
     {
       "aliasColors": {},
       "bars": false,
@@ -27,10 +350,10 @@
       "description": "",
       "fill": 1,
       "gridPos": {
-        "h": 9,
-        "w": 12,
+        "h": 7,
+        "w": 24,
         "x": 0,
-        "y": 0
+        "y": 8
       },
       "id": 6,
       "legend": {
@@ -46,6 +369,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -159,15 +483,15 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$datasource",
+      "datasource": "Stackdriver",
       "fill": 1,
       "gridPos": {
         "h": 9,
         "w": 12,
-        "x": 12,
-        "y": 0
+        "x": 0,
+        "y": 15
       },
-      "id": 8,
+      "id": 11,
       "legend": {
         "avg": false,
         "current": false,
@@ -181,6 +505,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -191,16 +516,183 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(container_memory_usage_bytes{container_name=\"iot-service\"})",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "refId": "A"
+          "aggregation": {
+            "alignmentPeriod": "stackdriver-auto",
+            "crossSeriesReducer": "REDUCE_SUM",
+            "groupBys": [],
+            "perSeriesAligner": "ALIGN_INTERPOLATE"
+          },
+          "aliasBy": "Enriched Samples",
+          "alignOptions": [
+            {
+              "expanded": true,
+              "label": "Alignment options",
+              "options": [
+                {
+                  "label": "interpolate",
+                  "metricKinds": [
+                    "GAUGE"
+                  ],
+                  "text": "interpolate",
+                  "value": "ALIGN_INTERPOLATE",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "next older",
+                  "metricKinds": [
+                    "GAUGE"
+                  ],
+                  "text": "next older",
+                  "value": "ALIGN_NEXT_OLDER",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY",
+                    "DISTRIBUTION",
+                    "STRING",
+                    "VALUE_TYPE_UNSPECIFIED",
+                    "BOOL"
+                  ]
+                },
+                {
+                  "label": "min",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "min",
+                  "value": "ALIGN_MIN",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "max",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "max",
+                  "value": "ALIGN_MAX",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "mean",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "mean",
+                  "value": "ALIGN_MEAN",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "count",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "count",
+                  "value": "ALIGN_COUNT",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY",
+                    "BOOL"
+                  ]
+                },
+                {
+                  "label": "sum",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "sum",
+                  "value": "ALIGN_SUM",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY",
+                    "DISTRIBUTION"
+                  ]
+                },
+                {
+                  "label": "stddev",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "stddev",
+                  "value": "ALIGN_STDDEV",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "percent change",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "percent change",
+                  "value": "ALIGN_PERCENT_CHANGE",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                }
+              ]
+            }
+          ],
+          "alignmentPeriod": "stackdriver-auto",
+          "crossSeriesReducer": "REDUCE_MEAN",
+          "defaultProject": "staging-eabb77f6",
+          "filters": [
+            "resource.label.job_name",
+            "=",
+            "samples-pipeline",
+            "AND",
+            "metric.label.pcollection",
+            "=",
+            "SampleEnrichmentPipeline/LegacySessionFlow/SessionConstructor/SessionConstructor.out0"
+          ],
+          "groupBys": [],
+          "lastQuery": "aggregation.alignmentPeriod=+60s&aggregation.crossSeriesReducer=REDUCE_MEAN&aggregation.perSeriesAligner=ALIGN_INTERPOLATE&filter=metric.type=\"dataflow.googleapis.com/job/element_count\"+resource.label.job_name=\"samples-pipeline\"+metric.label.pcollection=\"SampleEnrichmentPipeline/LegacySessionFlow/SessionGrouper/SessionGrouper.out0\"&interval.endTime=2019-03-31T09:28:47Z&interval.startTime=2019-03-31T03:28:47Z&view=FULL",
+          "lastQueryError": "",
+          "metric": "",
+          "metricKind": "GAUGE",
+          "metricType": "dataflow.googleapis.com/job/element_count",
+          "perSeriesAligner": "ALIGN_INTERPOLATE",
+          "refId": "B",
+          "service": "dataflow.googleapis.com",
+          "showAggregationOptions": false,
+          "unit": "1",
+          "usedAlignmentPeriod": 60,
+          "valueType": "INT64"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
-      "title": "iot service memory consumption",
+      "title": "Samples Pipeline Data (Sessions Pcoll)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -216,7 +708,92 @@
       },
       "yaxes": [
         {
-          "format": "decbytes",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 15
+      },
+      "id": 12,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "paceLength": 10,
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(augury_iot_service_minimal_sessions_expected_counter)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Sessions ingested in iot service",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -248,7 +825,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 9
+        "y": 24
       },
       "id": 4,
       "legend": {
@@ -264,6 +841,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -276,52 +854,169 @@
         {
           "aggregation": {
             "alignmentPeriod": "stackdriver-auto",
-            "crossSeriesReducer": "REDUCE_MEAN",
-            "groupBys": [
-              "resource.label.project_id"
-            ],
-            "perSeriesAligner": "ALIGN_INTERPOLATE"
-          },
-          "aliasBy": "Session",
-          "defaultProject": "staging-eabb77f6",
-          "expr": "",
-          "filters": [
-            "metric.label.pcollection",
-            "=",
-            "SampleEnrichmentPipeline/LegacySessionFlow/SessionGrouper/SessionGrouper.out0"
-          ],
-          "format": "time_series",
-          "intervalFactor": 1,
-          "metric": "",
-          "metricKind": "GAUGE",
-          "metricType": "dataflow.googleapis.com/job/element_count",
-          "refId": "A",
-          "service": "dataflow.googleapis.com",
-          "showAggregationOptions": false,
-          "unit": "1",
-          "valueType": "INT64"
-        },
-        {
-          "aggregation": {
-            "alignmentPeriod": "stackdriver-auto",
             "crossSeriesReducer": "REDUCE_SUM",
             "groupBys": [],
             "perSeriesAligner": "ALIGN_INTERPOLATE"
           },
           "aliasBy": "Enriched Samples",
+          "alignOptions": [
+            {
+              "expanded": true,
+              "label": "Alignment options",
+              "options": [
+                {
+                  "label": "interpolate",
+                  "metricKinds": [
+                    "GAUGE"
+                  ],
+                  "text": "interpolate",
+                  "value": "ALIGN_INTERPOLATE",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "next older",
+                  "metricKinds": [
+                    "GAUGE"
+                  ],
+                  "text": "next older",
+                  "value": "ALIGN_NEXT_OLDER",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY",
+                    "DISTRIBUTION",
+                    "STRING",
+                    "VALUE_TYPE_UNSPECIFIED",
+                    "BOOL"
+                  ]
+                },
+                {
+                  "label": "min",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "min",
+                  "value": "ALIGN_MIN",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "max",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "max",
+                  "value": "ALIGN_MAX",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "mean",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "mean",
+                  "value": "ALIGN_MEAN",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "count",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "count",
+                  "value": "ALIGN_COUNT",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY",
+                    "BOOL"
+                  ]
+                },
+                {
+                  "label": "sum",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "sum",
+                  "value": "ALIGN_SUM",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY",
+                    "DISTRIBUTION"
+                  ]
+                },
+                {
+                  "label": "stddev",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "stddev",
+                  "value": "ALIGN_STDDEV",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "percent change",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "percent change",
+                  "value": "ALIGN_PERCENT_CHANGE",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                }
+              ]
+            }
+          ],
+          "alignmentPeriod": "stackdriver-auto",
+          "crossSeriesReducer": "REDUCE_MEAN",
           "defaultProject": "staging-eabb77f6",
           "filters": [
             "metric.label.pcollection",
             "=",
-            "SampleEnrichmentPipeline/SampleEndpointMetadataEnricher/SampleEndpointMetadataEnricher.out0"
+            "PubsubSubscriptionIngester/MapElements/Map.out0"
           ],
+          "groupBys": [],
+          "lastQuery": "",
+          "lastQueryError": "",
           "metric": "",
           "metricKind": "GAUGE",
           "metricType": "dataflow.googleapis.com/job/element_count",
+          "perSeriesAligner": "ALIGN_INTERPOLATE",
           "refId": "B",
           "service": "dataflow.googleapis.com",
           "showAggregationOptions": false,
           "unit": "1",
+          "usedAlignmentPeriod": "",
           "valueType": "INT64"
         },
         {
@@ -356,7 +1051,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Samples Pipeline Data",
+      "title": "Samples Pipeline Data (Samples Pcoll)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -403,8 +1098,8 @@
       "gridPos": {
         "h": 9,
         "w": 12,
-        "x": 0,
-        "y": 18
+        "x": 12,
+        "y": 24
       },
       "id": 2,
       "legend": {
@@ -420,6 +1115,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -434,19 +1130,13 @@
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
-        },
-        {
-          "expr": "sum(augury_iot_service_minimal_sessions_expected_counter)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Samples & Session ingested in iot service",
+      "title": "Samples ingested in iot service",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -485,7 +1175,7 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 16,
+  "schemaVersion": 18,
   "style": "dark",
   "tags": [
     "iot-service"
@@ -510,8 +1200,8 @@
     ]
   },
   "time": {
-    "from": "now-1h",
-    "to": "now"
+    "from": "2019-03-28T09:26:19.449Z",
+    "to": "2019-03-28T11:14:43.333Z"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -540,6 +1230,6 @@
   },
   "timezone": "browser",
   "title": "Sample Ingestion",
-  "uid": null,
-  "version": 4
+  "uid": "fZFd-l3iz",
+  "version": 1
 }
