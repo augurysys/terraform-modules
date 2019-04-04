@@ -2,9 +2,9 @@ resource "google_container_node_pool" "default_np" {
   provider = "google-beta"
   project  = "${var.project_id}"
 
-  name    = "${var.name}-k8s-node-pool"
-  zone    = "${var.zone}"
-  cluster = "${google_container_cluster.default.name}"
+  name     = "${var.name}-k8s-node-pool"
+  location = "${var.zone}"
+  cluster  = "${google_container_cluster.default.name}"
 
   initial_node_count = 1
 
@@ -32,9 +32,9 @@ resource "google_container_node_pool" "algo_np" {
   provider = "google-beta"
   project  = "${var.project_id}"
 
-  name    = "${var.name}-k8s-algo-node-pool"
-  zone    = "${var.zone}"
-  cluster = "${google_container_cluster.default.name}"
+  name     = "${var.name}-k8s-algo-node-pool"
+  location = "${var.zone}"
+  cluster  = "${google_container_cluster.default.name}"
 
   autoscaling = {
     min_node_count = "${var.algo_autoscaling_min}"
@@ -58,12 +58,12 @@ resource "google_container_cluster" "default" {
   provider           = "google-beta"
   name               = "${var.name}"
   description        = "augury's ${var.name} kubernetes cluster on gcloud"
-  zone               = "${var.zone}"
+  location           = "${var.zone}"
   min_master_version = "${var.gke_version}"
   network            = "${var.network}"
   subnetwork         = "${var.subnetwork}"
 
-  additional_zones = ["${var.additional_zones}"]
+  node_locations = ["${var.additional_zones}"]
 
   private_cluster_config = {
     enable_private_nodes   = true
