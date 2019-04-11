@@ -21,6 +21,8 @@ resource "google_container_node_pool" "default_np" {
     disk_size_gb    = "${var.disk_size_gb}"
 
     oauth_scopes = ["${var.auth_scops}"]
+
+    tags = ["k8s-node"]
   }
 
   lifecycle {
@@ -49,6 +51,8 @@ resource "google_container_node_pool" "algo_np" {
     disk_size_gb = "${var.algo_disk_size_gb}"
 
     oauth_scopes = ["${var.auth_scops}"]
+
+    tags = ["k8s-node"]
 
     taint = ["${var.taint}"]
   }
