@@ -31,7 +31,7 @@ resource "google_container_cluster" "default" {
   enable_legacy_abac = false
 
   lifecycle {
-    ignore_changes = ["node_pool"]
+    ignore_changes = ["node_pool", "master_auth", "network", "subnetwork"]
   }
 
   node_pool {
