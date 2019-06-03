@@ -15,9 +15,405 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1554023717607,
+  "iteration": 1559560698720,
   "links": [],
   "panels": [
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Stackdriver",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 14,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "paceLength": 10,
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "aliasBy": "iot-service ack sum 1h",
+          "alignOptions": [
+            {
+              "expanded": true,
+              "label": "Alignment options",
+              "options": [
+                {
+                  "label": "delta",
+                  "metricKinds": [
+                    "CUMULATIVE",
+                    "DELTA"
+                  ],
+                  "text": "delta",
+                  "value": "ALIGN_DELTA",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY",
+                    "DISTRIBUTION"
+                  ]
+                },
+                {
+                  "label": "rate",
+                  "metricKinds": [
+                    "CUMULATIVE",
+                    "DELTA"
+                  ],
+                  "text": "rate",
+                  "value": "ALIGN_RATE",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "min",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "min",
+                  "value": "ALIGN_MIN",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "max",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "max",
+                  "value": "ALIGN_MAX",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "mean",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "mean",
+                  "value": "ALIGN_MEAN",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "count",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "count",
+                  "value": "ALIGN_COUNT",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY",
+                    "BOOL"
+                  ]
+                },
+                {
+                  "label": "sum",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "sum",
+                  "value": "ALIGN_SUM",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY",
+                    "DISTRIBUTION"
+                  ]
+                },
+                {
+                  "label": "stddev",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "stddev",
+                  "value": "ALIGN_STDDEV",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "percent change",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "percent change",
+                  "value": "ALIGN_PERCENT_CHANGE",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                }
+              ]
+            }
+          ],
+          "alignmentPeriod": "+1800s",
+          "crossSeriesReducer": "REDUCE_SUM",
+          "defaultProject": "loading project...",
+          "filters": [
+            "resource.label.subscription_id",
+            "=",
+            "iot-service-sub-samples"
+          ],
+          "groupBys": [],
+          "lastQuery": "aggregation.alignmentPeriod=+3600s&aggregation.crossSeriesReducer=REDUCE_SUM&aggregation.perSeriesAligner=ALIGN_DELTA&filter=metric.type=\"pubsub.googleapis.com/subscription/ack_message_count\"+resource.label.subscription_id=\"iot-service-sub-samples\"&interval.endTime=2019-06-03T11:52:53Z&interval.startTime=2019-06-02T11:52:53Z&view=FULL",
+          "lastQueryError": "",
+          "metricKind": "DELTA",
+          "metricType": "pubsub.googleapis.com/subscription/ack_message_count",
+          "perSeriesAligner": "ALIGN_DELTA",
+          "refId": "D",
+          "service": "",
+          "unit": "1",
+          "usedAlignmentPeriod": 3600,
+          "valueType": "INT64"
+        },
+        {
+          "aliasBy": "samples pipeline ack sum 1h",
+          "alignOptions": [
+            {
+              "expanded": true,
+              "label": "Alignment options",
+              "options": [
+                {
+                  "label": "delta",
+                  "metricKinds": [
+                    "CUMULATIVE",
+                    "DELTA"
+                  ],
+                  "text": "delta",
+                  "value": "ALIGN_DELTA",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY",
+                    "DISTRIBUTION"
+                  ]
+                },
+                {
+                  "label": "rate",
+                  "metricKinds": [
+                    "CUMULATIVE",
+                    "DELTA"
+                  ],
+                  "text": "rate",
+                  "value": "ALIGN_RATE",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "min",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "min",
+                  "value": "ALIGN_MIN",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "max",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "max",
+                  "value": "ALIGN_MAX",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "mean",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "mean",
+                  "value": "ALIGN_MEAN",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "count",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "count",
+                  "value": "ALIGN_COUNT",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY",
+                    "BOOL"
+                  ]
+                },
+                {
+                  "label": "sum",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "sum",
+                  "value": "ALIGN_SUM",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY",
+                    "DISTRIBUTION"
+                  ]
+                },
+                {
+                  "label": "stddev",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "stddev",
+                  "value": "ALIGN_STDDEV",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "percent change",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "percent change",
+                  "value": "ALIGN_PERCENT_CHANGE",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                }
+              ]
+            }
+          ],
+          "alignmentPeriod": "+1800s",
+          "crossSeriesReducer": "REDUCE_SUM",
+          "defaultProject": "loading project...",
+          "filters": [
+            "resource.label.subscription_id",
+            "=",
+            "samples-pipeline-ingest"
+          ],
+          "groupBys": [],
+          "lastQuery": "aggregation.alignmentPeriod=+3600s&aggregation.crossSeriesReducer=REDUCE_SUM&aggregation.perSeriesAligner=ALIGN_DELTA&filter=metric.type=\"pubsub.googleapis.com/subscription/ack_message_count\"+resource.label.subscription_id=\"samples-pipeline-ingest\"&interval.endTime=2019-06-03T11:53:52Z&interval.startTime=2019-05-27T11:53:52Z&view=FULL",
+          "lastQueryError": "",
+          "metricKind": "DELTA",
+          "metricType": "pubsub.googleapis.com/subscription/ack_message_count",
+          "perSeriesAligner": "ALIGN_DELTA",
+          "refId": "A",
+          "service": "",
+          "unit": "1",
+          "usedAlignmentPeriod": 3600,
+          "valueType": "INT64"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Acknowledged samples (IoT service vs. ingest pipeline)",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
     {
       "aliasColors": {},
       "bars": false,
@@ -29,7 +425,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 0
+        "y": 7
       },
       "id": 10,
       "legend": {
@@ -267,7 +663,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 0
+        "y": 7
       },
       "id": 8,
       "legend": {
@@ -353,7 +749,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 8
+        "y": 15
       },
       "id": 6,
       "legend": {
@@ -489,7 +885,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 15
+        "y": 22
       },
       "id": 11,
       "legend": {
@@ -740,7 +1136,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 15
+        "y": 22
       },
       "id": 12,
       "legend": {
@@ -825,7 +1221,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 24
+        "y": 31
       },
       "id": 4,
       "legend": {
@@ -1099,7 +1495,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 24
+        "y": 31
       },
       "id": 2,
       "legend": {
@@ -1200,8 +1596,8 @@
     ]
   },
   "time": {
-    "from": "2019-03-28T09:26:19.449Z",
-    "to": "2019-03-28T11:14:43.333Z"
+    "from": "now-7d",
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -1231,5 +1627,5 @@
   "timezone": "browser",
   "title": "Sample Ingestion",
   "uid": "fZFd-l3iz",
-  "version": 1
+  "version": 2
 }
