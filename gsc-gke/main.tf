@@ -25,9 +25,7 @@ resource "google_container_cluster" "default" {
   }
 
   master_authorized_networks_config = {
-    cidr_blocks = {
-      [var.master_authorized_networks_cidrs]
-    }
+    cidr_blocks = var.master_authorized_networks_cidrs
   }
 
   enable_legacy_abac = false
