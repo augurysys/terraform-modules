@@ -24,7 +24,7 @@ resource "google_container_cluster" "default" {
     password = "${var.gke_master_password}"
   }
 
-  master_authorized_networks_config = {
+  master_authorized_networks_config {
     cidr_blocks = var.master_authorized_networks_cidrs
   }
 
