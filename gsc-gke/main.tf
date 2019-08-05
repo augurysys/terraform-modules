@@ -7,7 +7,7 @@ resource "google_container_cluster" "default" {
   network            = "${var.network}"
   subnetwork         = "${var.subnetwork}"
 
-  node_locations = ["${var.additional_zones}"]
+  node_locations = var.additional_zones
 
   private_cluster_config {
     enable_private_nodes   = true
