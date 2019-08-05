@@ -25,7 +25,7 @@ resource "google_container_cluster" "default" {
   }
 
   master_authorized_networks_config {
-    cidr_blocks {
+    cidr_blocks = {
       var.master_authorized_networks_cidrs
     }
   }
