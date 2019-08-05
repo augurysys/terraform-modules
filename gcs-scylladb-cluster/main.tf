@@ -45,7 +45,7 @@ resource "google_compute_instance" "scylladb" {
     }
   }
 
-  metadata {
+  metadata = {
     dc = "${var.scylla_dc}"
   }
 
