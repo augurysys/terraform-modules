@@ -10,8 +10,8 @@ resource "kubernetes_config_map" "scylla_dashboards" {
     }
   }
 
-  data {
-    "scylla-dash.3.0.json"    = "${file("${path.module}/templates/scylla-dash.3.0.json")}"
-    "scylla-manager.1.3.json" = "${file("${path.module}/templates/scylla-manager.1.3.json")}"
+  data = {
+    "scylla-dash.3.0.json"    = file("${path.module}/templates/scylla-dash.3.0.json")
+    "scylla-manager.1.3.json" = file("${path.module}/templates/scylla-manager.1.3.json")
   }
 }

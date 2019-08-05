@@ -10,7 +10,7 @@ resource "kubernetes_config_map" "nsqd_dashboard" {
     }
   }
 
-  data {
-    "nsqd.json" = "${file("${path.module}/templates/nsqd-dashboard.json")}"
+  data = {
+    "nsqd.json" = file("${path.module}/templates/nsqd-dashboard.json")
   }
 }

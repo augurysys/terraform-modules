@@ -10,7 +10,7 @@ resource "kubernetes_config_map" "k8s_deployments_dashboard" {
     }
   }
 
-  data {
-    "k8s-deployments.json" = "${file("${path.module}/templates/k8s-deployments-dashboard.json")}"
+  data = {
+    "k8s-deployments.json" = file("${path.module}/templates/k8s-deployments-dashboard.json")
   }
 }

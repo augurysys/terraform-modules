@@ -10,7 +10,7 @@ resource "kubernetes_config_map" "sample_ingestion_dashboard" {
     }
   }
 
-  data {
-    "sample-ingestion.json" = "${file("${path.module}/templates/sample-ingestion-dashboard.json")}"
+  data = {
+    "sample-ingestion.json" = file("${path.module}/templates/sample-ingestion-dashboard.json")
   }
 }

@@ -10,7 +10,7 @@ resource "kubernetes_config_map" "redis_dashboard" {
     }
   }
 
-  data {
-    "redis.json" = "${file("${path.module}/templates/redis-dashboard.json")}"
+  data =  {
+    "redis.json" = file("${path.module}/templates/redis-dashboard.json")
   }
 }

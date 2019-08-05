@@ -37,7 +37,7 @@ resource "google_compute_instance" "riak" {
     dc = "${var.riak_dc}"
   }
 
-  metadata_startup_script = "${file("${path.module}/templates/init.sh")}"
+  metadata_startup_script = file("${path.module}/templates/init.sh")
 
   tags = ["riak", "${var.riak_dc}"]
 

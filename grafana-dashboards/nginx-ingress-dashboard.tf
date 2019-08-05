@@ -10,7 +10,7 @@ resource "kubernetes_config_map" "nginx_ingress_dashboard" {
     }
   }
 
-  data {
-    "nginx-ingress.json" = "${file("${path.module}/templates/nginx-ingress-dashboard.json")}"
+  data = {
+    "nginx-ingress.json" = file("${path.module}/templates/nginx-ingress-dashboard.json")
   }
 }

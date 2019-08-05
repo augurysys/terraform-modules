@@ -1,5 +1,5 @@
 data "template_file" "init" {
-  template = "${file("${path.module}/templates/init.tpl")}"
+  template = file("${path.module}/templates/init.tpl")
 
   vars = {
     service_account_json = "${var.service_account_json}"
