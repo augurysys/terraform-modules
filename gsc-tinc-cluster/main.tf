@@ -1,16 +1,16 @@
 resource "google_compute_address" "tinc" {
-  count   = "${var.cluster_size}"
-  project = "${var.project_id}"
-  name    = "${format("tinc-%s-%d", var.name, count.index + 1)}"
-  region  = "${var.region}"
+  count   = var.cluster_size
+  project = var.project_id
+  name    = format("tinc-%s-%d", var.name, count.index + 1)
+  region  = var.region
 }
 
 resource "google_compute_instance" "tinc" {
-  count        = "${var.cluster_size}"
-  project      = "${var.project_id}"
-  name         = "${format("tinc-%s-%d", var.name, count.index + 1)}"
+  count        = var.cluster_size
+  project      = var.project_id
+  name         = format("tinc-%s-%d", var.name, count.index + 1)
   machine_type = "f1-micro"
-  zone         = "${format("%s-%s", var.region, element(split(",", var.zones), count.index % length(split(",", var.zones))))}"
+  zone         = format("%s-%s", var.region, element(split(",", var.zones), count.index % length(split(",", var.zones))))
 
   boot_disk {
     initialize_params {
@@ -19,10 +19,10 @@ resource "google_compute_instance" "tinc" {
   }
 
   network_interface {
-    subnetwork = "${var.subnetwork}"
+    subnetwork = var.subnetwork
 
     access_config {
-      nat_ip = "${element(google_compute_address.tinc.*.address, count.index)}"
+      nat_ip = element(google_compute_address.tinc.*.address, count.index)
     }
   }
 
