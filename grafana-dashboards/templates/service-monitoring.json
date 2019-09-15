@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 19,
-  "iteration": 1566236762685,
+  "iteration": 1568289582533,
   "links": [],
   "panels": [
     {
@@ -24,14 +24,15 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": "Prometheus",
       "fill": 1,
       "gridPos": {
-        "h": 6,
+        "h": 9,
         "w": 12,
         "x": 0,
         "y": 0
       },
-      "id": 4,
+      "id": 2,
       "legend": {
         "avg": false,
         "current": false,
@@ -56,10 +57,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(container_cpu_usage_seconds_total{pod_name=~\"$service-.*\"}[5m])) / (min(kube_deployment_status_replicas_available{deployment=\"$service\"}))",
+          "expr": "sum(rate(container_cpu_usage_seconds_total{pod_name=~\"$service-.*\"}[5m])) / min(kube_deployment_status_replicas_available{deployment=\"$service\"})",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "",
+          "legendFormat": "{{$service}}",
           "refId": "A"
         }
       ],
@@ -67,12 +69,13 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Avg CPU Time",
+      "title": "CPU Avg",
       "tooltip": {
         "shared": true,
         "sort": 0,
         "value_type": "individual"
       },
+      "transparent": true,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -83,7 +86,7 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "format": "s",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -109,14 +112,15 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": "Prometheus",
       "fill": 1,
       "gridPos": {
-        "h": 6,
+        "h": 9,
         "w": 12,
         "x": 12,
         "y": 0
       },
-      "id": 6,
+      "id": 3,
       "legend": {
         "avg": false,
         "current": false,
@@ -141,10 +145,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "(sum(container_memory_working_set_bytes{pod_name=~\"$service-.*\"}) / (min(kube_deployment_status_replicas_available{deployment=\"$service\"}))) / 1024 / 1024",
+          "expr": "max(container_memory_usage_bytes{pod_name=~\"$service.*\",container_name!=\"POD\",image!=\"\"})",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "",
+          "legendFormat": "{{$service}}",
           "refId": "A"
         }
       ],
@@ -152,12 +157,13 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Avg Memory",
+      "title": "Memory usage",
       "tooltip": {
         "shared": true,
         "sort": 0,
         "value_type": "individual"
       },
+      "transparent": true,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -168,8 +174,8 @@
       },
       "yaxes": [
         {
-          "format": "decmbytes",
-          "label": "",
+          "format": "decbytes",
+          "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
@@ -194,31 +200,245 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": "$datasource",
+      "decimals": 2,
+      "editable": true,
+      "error": false,
       "fill": 1,
+      "grid": {},
       "gridPos": {
-        "h": 6,
+        "h": 7,
         "w": 12,
         "x": 0,
-        "y": 6
+        "y": 9
       },
-      "id": 7,
+      "height": "200px",
+      "id": 5,
+      "isNew": true,
       "legend": {
         "alignAsTable": true,
-        "avg": false,
+        "avg": true,
         "current": false,
         "hideEmpty": false,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": false,
+        "sideWidth": 300,
+        "sort": "current",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {},
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "repeat": null,
+      "repeatDirection": "h",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "round(sum(irate(opencensus_io_http_server_request_count{service=~\"$service\"}[2m])) by (service), 0.001)",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{$service }}",
+          "metric": "network",
+          "refId": "A",
+          "step": 10
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Request Volume",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 2,
+        "value_type": "cumulative"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "reqps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "Bps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "max - istio-proxy": "#890f02",
+        "max - master": "#bf1b00",
+        "max - prometheus": "#bf1b00"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "decimals": 2,
+      "editable": false,
+      "error": false,
+      "fill": 0,
+      "grid": {},
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 9
+      },
+      "id": 7,
+      "isNew": true,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "hideEmpty": true,
         "hideZero": false,
         "max": false,
         "min": false,
         "rightSide": true,
         "show": false,
+        "sideWidth": 300,
+        "sort": "avg",
+        "sortDesc": true,
         "total": false,
-        "values": false
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {},
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(rate(opencensus_io_http_server_response_count_by_status_code{service=~\"$service\",http_status!~\"[4-5].*\"}[2m])) by (service) / sum(rate(opencensus_io_http_server_request_count{service=~\"$service\"}[2m])) by (service)",
+          "format": "time_series",
+          "instant": false,
+          "interval": "10s",
+          "intervalFactor": 1,
+          "legendFormat": "{{ $service }}",
+          "metric": "container_memory_usage:sort_desc",
+          "refId": "A",
+          "step": 10
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Success Rate (non-4|5xx responses)",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 1,
+        "value_type": "cumulative"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percentunit",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "decimals": null,
+      "fill": 1,
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 16
+      },
+      "id": 9,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
       },
       "lines": true,
       "linewidth": 1,
       "links": [],
-      "nullPointMode": "connected",
+      "nullPointMode": "null",
       "options": {},
       "percentage": false,
       "pointradius": 2,
@@ -232,6 +452,7 @@
         {
           "expr": "topk(5, (sum(opencensus_io_http_server_latency_sum{pod=~\"$service-.*\"} / opencensus_io_http_server_latency_count{pod=~\"$service-.*\"}) by (http_server_route)))",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
           "legendFormat": "",
           "refId": "A"
@@ -243,7 +464,7 @@
       "timeShift": null,
       "title": "5 Slowest Service API's",
       "tooltip": {
-        "shared": false,
+        "shared": true,
         "sort": 0,
         "value_type": "individual"
       },
@@ -258,8 +479,9 @@
       },
       "yaxes": [
         {
+          "decimals": 0,
           "format": "ms",
-          "label": "",
+          "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
@@ -271,97 +493,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "fill": 1,
-      "gridPos": {
-        "h": 6,
-        "w": 12,
-        "x": 12,
-        "y": 6
-      },
-      "id": 8,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": false,
-        "hideEmpty": false,
-        "hideZero": false,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": false,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "connected",
-      "options": {},
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "sum(rate(opencensus_io_http_server_response_count_by_status_code{pod=~\"$service-.*\", http_status!=\"200\", http_status!=\"204\"}[10m])) by (http_status)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "HTTP response code rates",
-      "tooltip": {
-        "shared": false,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "transparent": true,
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "percent",
-          "label": "",
-          "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
         }
       ],
       "yaxis": {
@@ -370,10 +502,12 @@
       }
     }
   ],
-  "refresh": false,
   "schemaVersion": 18,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "k8s",
+    "augury"
+  ],
   "templating": {
     "list": [
       {
@@ -396,13 +530,12 @@
       {
         "allValue": null,
         "current": {
-          "tags": [],
           "text": "backend",
           "value": "backend"
         },
         "hide": 0,
         "includeAll": false,
-        "label": "Service",
+        "label": "service",
         "multi": false,
         "name": "service",
         "options": [
@@ -419,7 +552,7 @@
     ]
   },
   "time": {
-    "from": "now-24h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {
@@ -447,8 +580,8 @@
       "30d"
     ]
   },
-  "timezone": "",
+  "timezone": "browser",
   "title": "Service Monitoring",
-  "uid": "-V9MvsdWk",
-  "version": 4
+  "uid": null,
+  "version": 1
 }

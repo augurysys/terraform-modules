@@ -11,6 +11,6 @@ resource "kubernetes_config_map" "service_monitoring_dashboard" {
   }
 
   data = {
-    "service-monitoring.json" = file("${path.module}/templates/service-monitoring-dashboard.json")
+    "service-monitoring.json" = file("${path.module}/templates/service-monitoring.json")
   }
 }
