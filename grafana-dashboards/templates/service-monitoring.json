@@ -15,8 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 19,
-  "iteration": 1568289582533,
+  "iteration": 1568635543198,
   "links": [],
   "panels": [
     {
@@ -502,6 +501,7 @@
       }
     }
   ],
+  "refresh": false,
   "schemaVersion": 18,
   "style": "dark",
   "tags": [
@@ -530,29 +530,107 @@
       {
         "allValue": null,
         "current": {
-          "text": "backend",
-          "value": "backend"
+          "tags": [],
+          "text": "frontend",
+          "value": [
+            "frontend"
+          ]
         },
         "hide": 0,
         "includeAll": false,
         "label": "service",
-        "multi": false,
+        "multi": true,
         "name": "service",
         "options": [
           {
             "selected": true,
+            "text": "frontend",
+            "value": "frontend"
+          },
+          {
+            "selected": false,
+            "text": "apigateway",
+            "value": "apigateway"
+          },
+          {
+            "selected": false,
             "text": "backend",
             "value": "backend"
+          },
+          {
+            "selected": false,
+            "text": "autocomplete",
+            "value": "autocomplete"
+          },
+          {
+            "selected": false,
+            "text": "feature-switcher",
+            "value": "feature-switcher"
+          },
+          {
+            "selected": false,
+            "text": "feeds",
+            "value": "feeds"
+          },
+          {
+            "selected": false,
+            "text": "file-server",
+            "value": "file-server"
+          },
+          {
+            "selected": false,
+            "text": "insights-handler",
+            "value": "insights-handler"
+          },
+          {
+            "selected": false,
+            "text": "iot-service",
+            "value": "iot-service"
+          },
+          {
+            "selected": false,
+            "text": "media-generator",
+            "value": "media-generator"
+          },
+          {
+            "selected": false,
+            "text": "messages",
+            "value": "messages"
+          },
+          {
+            "selected": false,
+            "text": "microservice-anomalies",
+            "value": "microservice-anomalies"
+          },
+          {
+            "selected": false,
+            "text": "microservice-algo-features",
+            "value": "microservice-algo-features"
+          },
+          {
+            "selected": false,
+            "text": "oauth2",
+            "value": "oauth2"
+          },
+          {
+            "selected": false,
+            "text": "reports",
+            "value": "reports"
+          },
+          {
+            "selected": false,
+            "text": "algo-anomalies",
+            "value": "algo-anomalies"
           }
         ],
-        "query": "backend",
+        "query": "frontend,apigateway,backend,autocomplete,feature-switcher,feeds,file-server,insights-handler,iot-service,media-generator,messages,microservice-anomalies,microservice-algo-features,oauth2,reports,algo-anomalies",
         "skipUrlSync": false,
         "type": "custom"
       }
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
@@ -582,6 +660,6 @@
   },
   "timezone": "browser",
   "title": "Service Monitoring",
-  "uid": null,
-  "version": 1
+  "uid": "-V9MvsdWk",
+  "version": 2
 }
