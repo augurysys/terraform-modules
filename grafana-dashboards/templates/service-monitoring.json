@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1568635543198,
+  "iteration": 1568637632000,
   "links": [],
   "panels": [
     {
@@ -26,18 +26,18 @@
       "datasource": "Prometheus",
       "fill": 1,
       "gridPos": {
-        "h": 9,
+        "h": 8,
         "w": 12,
         "x": 0,
         "y": 0
       },
-      "id": 2,
+      "id": 11,
       "legend": {
         "avg": false,
         "current": false,
         "max": false,
         "min": false,
-        "show": false,
+        "show": true,
         "total": false,
         "values": false
       },
@@ -56,11 +56,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(container_cpu_usage_seconds_total{pod_name=~\"$service-.*\"}[5m])) / min(kube_deployment_status_replicas_available{deployment=\"$service\"})",
+          "expr": "max(kube_pod_container_status_restarts_total{container=~\"$service.*\"})",
           "format": "time_series",
-          "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "{{$service}}",
           "refId": "A"
         }
       ],
@@ -68,13 +66,12 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "CPU Avg",
+      "title": "Max Restarts Count",
       "tooltip": {
         "shared": true,
         "sort": 0,
         "value_type": "individual"
       },
-      "transparent": true,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -85,7 +82,7 @@
       },
       "yaxes": [
         {
-          "format": "s",
+          "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -98,7 +95,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": false
+          "show": true
         }
       ],
       "yaxis": {
@@ -199,76 +196,56 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$datasource",
-      "decimals": 2,
-      "editable": true,
-      "error": false,
+      "datasource": "Prometheus",
       "fill": 1,
-      "grid": {},
       "gridPos": {
-        "h": 7,
+        "h": 9,
         "w": 12,
         "x": 0,
-        "y": 9
+        "y": 8
       },
-      "height": "200px",
-      "id": 5,
-      "isNew": true,
+      "id": 2,
       "legend": {
-        "alignAsTable": true,
-        "avg": true,
+        "avg": false,
         "current": false,
-        "hideEmpty": false,
-        "hideZero": true,
         "max": false,
         "min": false,
-        "rightSide": true,
         "show": false,
-        "sideWidth": 300,
-        "sort": "current",
-        "sortDesc": true,
         "total": false,
-        "values": true
+        "values": false
       },
       "lines": true,
-      "linewidth": 2,
+      "linewidth": 1,
       "links": [],
-      "nullPointMode": "connected",
+      "nullPointMode": "null",
       "options": {},
       "percentage": false,
-      "pointradius": 5,
+      "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "repeat": null,
-      "repeatDirection": "h",
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "expr": "round(sum(irate(opencensus_io_http_server_request_count{service=~\"$service\"}[2m])) by (service), 0.001)",
+          "expr": "sum(rate(container_cpu_usage_seconds_total{pod_name=~\"$service-.*\"}[5m])) / min(kube_deployment_status_replicas_available{deployment=\"$service\"})",
           "format": "time_series",
-          "hide": false,
-          "instant": false,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "{{$service }}",
-          "metric": "network",
-          "refId": "A",
-          "step": 10
+          "legendFormat": "{{$service}}",
+          "refId": "A"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Request Volume",
+      "title": "CPU Avg",
       "tooltip": {
-        "msResolution": false,
         "shared": true,
-        "sort": 2,
-        "value_type": "cumulative"
+        "sort": 0,
+        "value_type": "individual"
       },
       "transparent": true,
       "type": "graph",
@@ -281,7 +258,7 @@
       },
       "yaxes": [
         {
-          "format": "reqps",
+          "format": "s",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -289,7 +266,7 @@
           "show": true
         },
         {
-          "format": "Bps",
+          "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -415,13 +392,121 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": "$datasource",
+      "decimals": 2,
+      "editable": true,
+      "error": false,
+      "fill": 1,
+      "grid": {},
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 17
+      },
+      "height": "200px",
+      "id": 5,
+      "isNew": true,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": false,
+        "sideWidth": 300,
+        "sort": "current",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {},
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "repeat": null,
+      "repeatDirection": "h",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "round(sum(irate(opencensus_io_http_server_request_count{service=~\"$service\"}[2m])) by (service), 0.001)",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{$service }}",
+          "metric": "network",
+          "refId": "A",
+          "step": 10
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Request Volume",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 2,
+        "value_type": "cumulative"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "reqps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "Bps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
       "decimals": null,
       "fill": 1,
       "gridPos": {
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 16
+        "y": 24
       },
       "id": 9,
       "legend": {
@@ -530,20 +615,19 @@
       {
         "allValue": null,
         "current": {
-          "tags": [],
-          "text": "frontend",
+          "text": "algo-anomalies",
           "value": [
-            "frontend"
+            "algo-anomalies"
           ]
         },
         "hide": 0,
         "includeAll": false,
         "label": "service",
-        "multi": true,
+        "multi": false,
         "name": "service",
         "options": [
           {
-            "selected": true,
+            "selected": false,
             "text": "frontend",
             "value": "frontend"
           },
@@ -618,7 +702,7 @@
             "value": "reports"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "algo-anomalies",
             "value": "algo-anomalies"
           }
@@ -661,5 +745,5 @@
   "timezone": "browser",
   "title": "Service Monitoring",
   "uid": "-V9MvsdWk",
-  "version": 2
+  "version": 3
 }
