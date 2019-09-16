@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1568668735868,
+  "iteration": 1568674322893,
   "links": [],
   "panels": [
     {
@@ -530,7 +530,6 @@
       {
         "allValue": null,
         "current": {
-          "tags": [],
           "text": "backend",
           "value": "backend"
         },
@@ -540,6 +539,11 @@
         "multi": false,
         "name": "service",
         "options": [
+          {
+            "selected": false,
+            "text": "eventhandler",
+            "value": "eventhandler"
+          },
           {
             "selected": false,
             "text": "frontend",
@@ -621,7 +625,7 @@
             "value": "algo-anomalies"
           }
         ],
-        "query": "frontend,apigateway,backend,autocomplete,feature-switcher,feeds,file-server,insights-handler,iot-service,media-generator,messages,microservice-anomalies,microservice-algo-features,oauth2,reports,algo-anomalies",
+        "query": "eventhandler,frontend,apigateway,backend,autocomplete,feature-switcher,feeds,file-server,insights-handler,iot-service,media-generator,messages,microservice-anomalies,microservice-algo-features,oauth2,reports,algo-anomalies",
         "skipUrlSync": false,
         "type": "custom"
       }
@@ -659,5 +663,5 @@
   "timezone": "browser",
   "title": "Async Service Monitoring",
   "uid": "msrWpgpWk",
-  "version": 4
+  "version": 5
 }
