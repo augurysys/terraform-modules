@@ -15,8 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 22,
-  "iteration": 1568660550824,
+  "iteration": 1568668735868,
   "links": [],
   "panels": [
     {
@@ -248,13 +247,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "round(sum(irate(task_latency_distribution_count{service=~\"$service\"}[2m])) by (nsq_event_name), 0.001)",
+          "expr": "round(sum(irate(nsq_task_latency_distribution_count{service=~\"$service\"}[2m])) by (nsq_channel, nsq_event_name), 0.001)",
           "format": "time_series",
           "hide": false,
           "instant": false,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "{{nsq_event_name }}",
+          "legendFormat": "{{nsq_event_name}}, {{nsq_channel}}",
           "metric": "network",
           "refId": "A",
           "step": 10
@@ -264,7 +263,114 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Request Volume",
+      "title": "Event Volume",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 2,
+        "value_type": "cumulative"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "reqps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "Bps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "decimals": 2,
+      "editable": true,
+      "error": false,
+      "fill": 1,
+      "grid": {},
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 9
+      },
+      "height": "200px",
+      "id": 10,
+      "isNew": true,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": false,
+        "sideWidth": 300,
+        "sort": "current",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {},
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "repeatDirection": "h",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(rate(nsq_task_status_count_total{service=~\"$service\",nsq_status=\"FAILED\"}[2m])) by (service) / sum(rate(nsq_task_status_count_total{service=~\"$service\"}[2m])) by (service)",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{nsq_event_name}}, {{nsq_channel}}",
+          "metric": "network",
+          "refId": "A",
+          "step": 10
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Event Error Rate",
       "tooltip": {
         "msResolution": false,
         "shared": true,
@@ -342,11 +448,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "topk(5, avg(task_latency_distribution_sum{service=\"$service\"} / task_latency_distribution_count{service=\"$service\"}) by (nsq_event_name))",
+          "expr": "topk(5, avg(nsq_task_latency_distribution_sum{service=\"$service\"} / nsq_task_latency_distribution_count{service=\"$service\"}) by (nsq_channel, nsq_event_name))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "",
+          "legendFormat": "{{nsq_event_name}}, {{nsq_channel}}",
           "refId": "A"
         }
       ],
@@ -552,6 +658,6 @@
   },
   "timezone": "browser",
   "title": "Async Service Monitoring",
-  "uid": null,
-  "version": 1
+  "uid": "msrWpgpWk",
+  "version": 4
 }
