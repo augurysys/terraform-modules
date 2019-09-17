@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1568674322893,
+  "iteration": 1568701917149,
   "links": [],
   "panels": [
     {
@@ -541,6 +541,11 @@
         "options": [
           {
             "selected": false,
+            "text": "algo",
+            "value": "algo"
+          },
+          {
+            "selected": false,
             "text": "eventhandler",
             "value": "eventhandler"
           },
@@ -625,7 +630,7 @@
             "value": "algo-anomalies"
           }
         ],
-        "query": "eventhandler,frontend,apigateway,backend,autocomplete,feature-switcher,feeds,file-server,insights-handler,iot-service,media-generator,messages,microservice-anomalies,microservice-algo-features,oauth2,reports,algo-anomalies",
+        "query": "algo,eventhandler,frontend,apigateway,backend,autocomplete,feature-switcher,feeds,file-server,insights-handler,iot-service,media-generator,messages,microservice-anomalies,microservice-algo-features,oauth2,reports,algo-anomalies",
         "skipUrlSync": false,
         "type": "custom"
       }
