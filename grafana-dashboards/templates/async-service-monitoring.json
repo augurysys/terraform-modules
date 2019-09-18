@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1568701917149,
+  "iteration": 1568812995430,
   "links": [],
   "panels": [
     {
@@ -247,7 +247,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "round(sum(irate(nsq_task_latency_distribution_count{service=~\"$service\"}[2m])) by (nsq_channel, nsq_event_name), 0.001)",
+          "expr": "round(sum(irate(augury_task_latency_distribution_count{service=~\"$service\"}[2m])) by (nsq_channel, nsq_event_name), 0.001)",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -354,7 +354,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(nsq_task_status_count_total{service=~\"$service\",nsq_status=\"FAILED\"}[2m])) by (service) / sum(rate(nsq_task_status_count_total{service=~\"$service\"}[2m])) by (service)",
+          "expr": "sum(rate(augury_task_status_count_total{service=~\"$service\",nsq_status=\"FAILED\"}[2m])) by (service) / sum(rate(augury_task_status_count_total{service=~\"$service\"}[2m])) by (service)",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -448,7 +448,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "topk(5, avg(nsq_task_latency_distribution_sum{service=\"$service\"} / nsq_task_latency_distribution_count{service=\"$service\"}) by (nsq_channel, nsq_event_name))",
+          "expr": "topk(5, avg(augury_task_latency_distribution_sum{service=\"$service\"} / augury_task_latency_distribution_count{service=\"$service\"}) by (nsq_channel, nsq_event_name))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -530,8 +530,8 @@
       {
         "allValue": null,
         "current": {
-          "text": "backend",
-          "value": "backend"
+          "text": "algo",
+          "value": "algo"
         },
         "hide": 0,
         "includeAll": false,
@@ -540,7 +540,7 @@
         "name": "service",
         "options": [
           {
-            "selected": false,
+            "selected": true,
             "text": "algo",
             "value": "algo"
           },
@@ -551,38 +551,8 @@
           },
           {
             "selected": false,
-            "text": "frontend",
-            "value": "frontend"
-          },
-          {
-            "selected": false,
-            "text": "apigateway",
-            "value": "apigateway"
-          },
-          {
-            "selected": true,
             "text": "backend",
             "value": "backend"
-          },
-          {
-            "selected": false,
-            "text": "autocomplete",
-            "value": "autocomplete"
-          },
-          {
-            "selected": false,
-            "text": "feature-switcher",
-            "value": "feature-switcher"
-          },
-          {
-            "selected": false,
-            "text": "feeds",
-            "value": "feeds"
-          },
-          {
-            "selected": false,
-            "text": "file-server",
-            "value": "file-server"
           },
           {
             "selected": false,
@@ -596,23 +566,8 @@
           },
           {
             "selected": false,
-            "text": "media-generator",
-            "value": "media-generator"
-          },
-          {
-            "selected": false,
-            "text": "messages",
-            "value": "messages"
-          },
-          {
-            "selected": false,
-            "text": "microservice-anomalies",
-            "value": "microservice-anomalies"
-          },
-          {
-            "selected": false,
-            "text": "microservice-algo-features",
-            "value": "microservice-algo-features"
+            "text": "message",
+            "value": "message"
           },
           {
             "selected": false,
@@ -630,7 +585,7 @@
             "value": "algo-anomalies"
           }
         ],
-        "query": "algo,eventhandler,frontend,apigateway,backend,autocomplete,feature-switcher,feeds,file-server,insights-handler,iot-service,media-generator,messages,microservice-anomalies,microservice-algo-features,oauth2,reports,algo-anomalies",
+        "query": "algo,eventhandler,backend,insights-handler,iot-service,message,oauth2,reports,algo-anomalies",
         "skipUrlSync": false,
         "type": "custom"
       }
@@ -668,5 +623,5 @@
   "timezone": "browser",
   "title": "Async Service Monitoring",
   "uid": "msrWpgpWk",
-  "version": 5
+  "version": 6
 }
