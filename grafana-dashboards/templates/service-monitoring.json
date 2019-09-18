@@ -15,7 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1568637632008,
+  "id": 23,
+  "iteration": 1568817784157,
   "links": [],
   "panels": [
     {
@@ -56,7 +57,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "topk(3,sum(rate(opencensus_io_http_server_response_bytes_sum{service=\"$service\"}[5m])) by (http_server_route) / sum(rate(opencensus_io_http_server_response_bytes_count{service=\"$service\"}[5m])) by (http_server_route))",
+          "expr": "topk(3,sum(rate(augury_opencensus_io_http_server_response_bytes_sum{service=\"$service\"}[5m])) by (http_server_route) / sum(rate(augury_opencensus_io_http_server_response_bytes_count{service=\"$service\"}[5m])) by (http_server_route))",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -228,7 +229,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "topk(3,sum(rate(opencensus_io_http_server_request_bytes_sum{service=\"$service\"}[5m])) by (http_server_route) / sum(rate(opencensus_io_http_server_request_bytes_count{service=\"$service\"}[5m])) by (http_server_route))",
+          "expr": "topk(3,sum(rate(augury_opencensus_io_http_server_request_bytes_sum{service=\"$service\"}[5m])) by (http_server_route) / sum(rate(augury_opencensus_io_http_server_request_bytes_count{service=\"$service\"}[5m])) by (http_server_route))",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -482,7 +483,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(opencensus_io_http_server_response_count_by_status_code{service=~\"$service\",http_status=~\"[5].*\"}[2m])) by (service) / sum(rate(opencensus_io_http_server_request_count{service=~\"$service\"}[2m])) by (service)",
+          "expr": "sum(rate(augury_opencensus_io_http_server_response_count_by_status_code{service=~\"$service\",http_status=~\"[5].*\"}[2m])) by (service) / sum(rate(augury_opencensus_io_http_server_request_count{service=~\"$service\"}[2m])) by (service)",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -778,7 +779,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "round(sum(irate(opencensus_io_http_server_request_count{service=~\"$service\"}[2m])) by (service), 0.001)",
+          "expr": "round(sum(irate(augury_opencensus_io_http_server_request_count{service=~\"$service\"}[2m])) by (service), 0.001)",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -872,7 +873,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "topk(5, (sum(opencensus_io_http_server_latency_sum{pod=~\"$service-.*\"} / opencensus_io_http_server_latency_count{pod=~\"$service-.*\"}) by (http_server_route)))",
+          "expr": "topk(5, (sum(augury_opencensus_io_http_server_latency_sum{pod=~\"$service-.*\"} / augury_opencensus_io_http_server_latency_count{pod=~\"$service-.*\"}) by (http_server_route)))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1051,7 +1052,7 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
@@ -1082,5 +1083,5 @@
   "timezone": "browser",
   "title": "Service Monitoring",
   "uid": "-V9MvsdWk",
-  "version": 3
+  "version": 5
 }
