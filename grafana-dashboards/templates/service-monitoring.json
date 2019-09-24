@@ -15,8 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 23,
-  "iteration": 1568817784157,
+  "iteration": 1569306097190,
   "links": [],
   "panels": [
     {
@@ -954,7 +953,6 @@
       {
         "allValue": null,
         "current": {
-          "tags": [],
           "text": "backend",
           "value": "backend"
         },
@@ -1031,8 +1029,8 @@
           },
           {
             "selected": false,
-            "text": "oauth2",
-            "value": "oauth2"
+            "text": "oauth2-internal",
+            "value": "oauth2-internal"
           },
           {
             "selected": false,
@@ -1045,7 +1043,7 @@
             "value": "algo-anomalies"
           }
         ],
-        "query": "frontend,apigateway,backend,autocomplete,feature-switcher,feeds,file-server,insights-handler,iot-service,media-generator,messages,microservice-anomalies,microservice-algo-features,oauth2,reports,algo-anomalies",
+        "query": "frontend,apigateway,backend,autocomplete,feature-switcher,feeds,file-server,insights-handler,iot-service,media-generator,messages,microservice-anomalies,microservice-algo-features,oauth2-internal,reports,algo-anomalies",
         "skipUrlSync": false,
         "type": "custom"
       }
@@ -1083,5 +1081,5 @@
   "timezone": "browser",
   "title": "Service Monitoring",
   "uid": "-V9MvsdWk",
-  "version": 5
+  "version": 18
 }
