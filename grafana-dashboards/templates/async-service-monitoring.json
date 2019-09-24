@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1569306097190,
+  "iteration": 1568812995430,
   "links": [],
   "panels": [
     {
@@ -26,18 +26,18 @@
       "datasource": "Prometheus",
       "fill": 1,
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 12,
         "x": 0,
         "y": 0
       },
-      "id": 19,
+      "id": 2,
       "legend": {
         "avg": false,
         "current": false,
         "max": false,
         "min": false,
-        "show": true,
+        "show": false,
         "total": false,
         "values": false
       },
@@ -56,9 +56,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "topk(3,sum(rate(augury_opencensus_io_http_server_response_bytes_sum{service=\"$service\"}[5m])) by (http_server_route) / sum(rate(augury_opencensus_io_http_server_response_bytes_count{service=\"$service\"}[5m])) by (http_server_route))",
+          "expr": "sum(rate(container_cpu_usage_seconds_total{pod_name=~\"$service-.*\"}[5m])) / min(kube_deployment_status_replicas_available{deployment=\"$service\"})",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
+          "legendFormat": "{{$service}}",
           "refId": "A"
         }
       ],
@@ -66,12 +68,13 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Top 5  response payload size routes",
+      "title": "CPU Avg",
       "tooltip": {
         "shared": true,
         "sort": 0,
         "value_type": "individual"
       },
+      "transparent": true,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -82,7 +85,7 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "format": "s",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -95,7 +98,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true
+          "show": false
         }
       ],
       "yaxis": {
@@ -196,540 +199,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "fill": 1,
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 8
-      },
-      "id": 17,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {},
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "topk(3,sum(rate(augury_opencensus_io_http_server_request_bytes_sum{service=\"$service\"}[5m])) by (http_server_route) / sum(rate(augury_opencensus_io_http_server_request_bytes_count{service=\"$service\"}[5m])) by (http_server_route))",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Top 5 API request payload routes",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "fill": 1,
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 9
-      },
-      "id": 15,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {},
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "sum(rate(opencensus_io_http_server_response_count_by_status_code{service=~\"$service\",http_status=~\"[4].*\"}[2m])) by (service) / sum(rate(opencensus_io_http_server_request_count{service=~\"$service\"}[2m])) by (service)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "400>= Requests / Total Requests ",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "fill": 1,
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 16
-      },
-      "id": 11,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {},
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "max(kube_pod_container_status_restarts_total{container=~\"$service.*\"})",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Max Restarts Count",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "description": "",
-      "fill": 1,
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 17
-      },
-      "id": 13,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {},
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "sum(rate(augury_opencensus_io_http_server_response_count_by_status_code{service=~\"$service\",http_status=~\"[5].*\"}[2m])) by (service) / sum(rate(augury_opencensus_io_http_server_request_count{service=~\"$service\"}[2m])) by (service)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "500>= Requests / Total Requests ",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 0,
-        "y": 24
-      },
-      "id": 2,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {},
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "sum(rate(container_cpu_usage_seconds_total{pod_name=~\"$service-.*\"}[5m])) / min(kube_deployment_status_replicas_available{deployment=\"$service\"})",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "{{$service}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "CPU Avg",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "transparent": true,
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "s",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {
-        "max - istio-proxy": "#890f02",
-        "max - master": "#bf1b00",
-        "max - prometheus": "#bf1b00"
-      },
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "$datasource",
-      "decimals": 2,
-      "editable": false,
-      "error": false,
-      "fill": 0,
-      "grid": {},
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 12,
-        "y": 25
-      },
-      "id": 7,
-      "isNew": true,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": false,
-        "hideEmpty": true,
-        "hideZero": false,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": false,
-        "sideWidth": 300,
-        "sort": "avg",
-        "sortDesc": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 2,
-      "links": [],
-      "nullPointMode": "connected",
-      "options": {},
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "sum(rate(opencensus_io_http_server_response_count_by_status_code{service=~\"$service\",http_status!~\"[4-5].*\"}[2m])) by (service) / sum(rate(opencensus_io_http_server_request_count{service=~\"$service\"}[2m])) by (service)",
-          "format": "time_series",
-          "instant": false,
-          "interval": "10s",
-          "intervalFactor": 1,
-          "legendFormat": "{{ $service }}",
-          "metric": "container_memory_usage:sort_desc",
-          "refId": "A",
-          "step": 10
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Success Rate (non-4|5xx responses)",
-      "tooltip": {
-        "msResolution": false,
-        "shared": true,
-        "sort": 1,
-        "value_type": "cumulative"
-      },
-      "transparent": true,
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "percentunit",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
       "datasource": "$datasource",
       "decimals": 2,
       "editable": true,
@@ -740,7 +209,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 33
+        "y": 9
       },
       "height": "200px",
       "id": 5,
@@ -778,13 +247,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "round(sum(irate(augury_opencensus_io_http_server_request_count{service=~\"$service\"}[2m])) by (service), 0.001)",
+          "expr": "round(sum(irate(augury_task_latency_distribution_count{service=~\"$service\"}[2m])) by (nsq_channel, nsq_event_name), 0.001)",
           "format": "time_series",
           "hide": false,
           "instant": false,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "{{$service }}",
+          "legendFormat": "{{nsq_event_name}}, {{nsq_channel}}",
           "metric": "network",
           "refId": "A",
           "step": 10
@@ -794,7 +263,114 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Request Volume",
+      "title": "Event Volume",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 2,
+        "value_type": "cumulative"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "reqps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "Bps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "decimals": 2,
+      "editable": true,
+      "error": false,
+      "fill": 1,
+      "grid": {},
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 9
+      },
+      "height": "200px",
+      "id": 10,
+      "isNew": true,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": false,
+        "sideWidth": 300,
+        "sort": "current",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {},
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "repeatDirection": "h",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(rate(augury_task_status_count_total{service=~\"$service\",nsq_status=\"FAILED\"}[2m])) by (service) / sum(rate(augury_task_status_count_total{service=~\"$service\"}[2m])) by (service)",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{nsq_event_name}}, {{nsq_channel}}",
+          "metric": "network",
+          "refId": "A",
+          "step": 10
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Event Error Rate",
       "tooltip": {
         "msResolution": false,
         "shared": true,
@@ -844,7 +420,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 40
+        "y": 16
       },
       "id": 9,
       "legend": {
@@ -872,11 +448,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "topk(5, (sum(augury_opencensus_io_http_server_latency_sum{pod=~\"$service-.*\"} / augury_opencensus_io_http_server_latency_count{pod=~\"$service-.*\"}) by (http_server_route)))",
+          "expr": "topk(5, avg(augury_task_latency_distribution_sum{service=\"$service\"} / augury_task_latency_distribution_count{service=\"$service\"}) by (nsq_channel, nsq_event_name))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "",
+          "legendFormat": "{{nsq_event_name}}, {{nsq_channel}}",
           "refId": "A"
         }
       ],
@@ -884,7 +460,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "5 Slowest Service API's",
+      "title": "5 Slowest Service Async Events",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -929,7 +505,8 @@
   "style": "dark",
   "tags": [
     "k8s",
-    "augury"
+    "augury",
+    "async"
   ],
   "templating": {
     "list": [
@@ -953,8 +530,8 @@
       {
         "allValue": null,
         "current": {
-          "text": "backend",
-          "value": "backend"
+          "text": "algo",
+          "value": "algo"
         },
         "hide": 0,
         "includeAll": false,
@@ -963,39 +540,19 @@
         "name": "service",
         "options": [
           {
-            "selected": false,
-            "text": "frontend",
-            "value": "frontend"
-          },
-          {
-            "selected": false,
-            "text": "apigateway",
-            "value": "apigateway"
-          },
-          {
             "selected": true,
+            "text": "algo",
+            "value": "algo"
+          },
+          {
+            "selected": false,
+            "text": "eventhandler",
+            "value": "eventhandler"
+          },
+          {
+            "selected": false,
             "text": "backend",
             "value": "backend"
-          },
-          {
-            "selected": false,
-            "text": "autocomplete",
-            "value": "autocomplete"
-          },
-          {
-            "selected": false,
-            "text": "feature-switcher",
-            "value": "feature-switcher"
-          },
-          {
-            "selected": false,
-            "text": "feeds",
-            "value": "feeds"
-          },
-          {
-            "selected": false,
-            "text": "file-server",
-            "value": "file-server"
           },
           {
             "selected": false,
@@ -1009,28 +566,13 @@
           },
           {
             "selected": false,
-            "text": "media-generator",
-            "value": "media-generator"
+            "text": "message",
+            "value": "message"
           },
           {
             "selected": false,
-            "text": "messages",
-            "value": "messages"
-          },
-          {
-            "selected": false,
-            "text": "microservice-anomalies",
-            "value": "microservice-anomalies"
-          },
-          {
-            "selected": false,
-            "text": "microservice-algo-features",
-            "value": "microservice-algo-features"
-          },
-          {
-            "selected": false,
-            "text": "oauth2-internal",
-            "value": "oauth2-internal"
+            "text": "oauth2",
+            "value": "oauth2"
           },
           {
             "selected": false,
@@ -1043,14 +585,14 @@
             "value": "algo-anomalies"
           }
         ],
-        "query": "frontend,apigateway,backend,autocomplete,feature-switcher,feeds,file-server,insights-handler,iot-service,media-generator,messages,microservice-anomalies,microservice-algo-features,oauth2-internal,reports,algo-anomalies",
+        "query": "algo,eventhandler,backend,insights-handler,iot-service,message,oauth2,reports,algo-anomalies",
         "skipUrlSync": false,
         "type": "custom"
       }
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {
@@ -1079,7 +621,7 @@
     ]
   },
   "timezone": "browser",
-  "title": "Service Monitoring",
-  "uid": "-V9MvsdWk",
-  "version": 18
+  "title": "Async Service Monitoring",
+  "uid": "msrWpgpWk",
+  "version": 6
 }
