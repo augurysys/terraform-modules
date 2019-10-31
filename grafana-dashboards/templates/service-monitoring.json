@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1569306097190,
+  "iteration": 1572513406052,
   "links": [],
   "panels": [
     {
@@ -33,8 +33,11 @@
       },
       "id": 19,
       "legend": {
+        "alignAsTable": false,
         "avg": false,
         "current": false,
+        "hideEmpty": false,
+        "hideZero": false,
         "max": false,
         "min": false,
         "show": true,
@@ -44,11 +47,11 @@
       "lines": true,
       "linewidth": 1,
       "links": [],
-      "nullPointMode": "null",
+      "nullPointMode": "connected",
       "options": {},
       "percentage": false,
-      "pointradius": 2,
-      "points": false,
+      "pointradius": 1,
+      "points": true,
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -56,9 +59,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "topk(3,sum(rate(augury_opencensus_io_http_server_response_bytes_sum{service=\"$service\"}[5m])) by (http_server_route) / sum(rate(augury_opencensus_io_http_server_response_bytes_count{service=\"$service\"}[5m])) by (http_server_route))",
+          "expr": "topk(5,sum(rate(augury_opencensus_io_http_server_response_bytes_sum{service=\"$service\"}[5m])) by (http_server_route) / sum(rate(augury_opencensus_io_http_server_response_bytes_count{service=\"$service\"}[5m])) by (http_server_route))",
           "format": "time_series",
+          "instant": false,
           "intervalFactor": 1,
+          "legendFormat": "",
           "refId": "A"
         }
       ],
@@ -69,7 +74,7 @@
       "title": "Top 5  response payload size routes",
       "tooltip": {
         "shared": true,
-        "sort": 0,
+        "sort": 2,
         "value_type": "individual"
       },
       "type": "graph",
@@ -82,7 +87,7 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "format": "bytes",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -300,7 +305,7 @@
       "lines": true,
       "linewidth": 1,
       "links": [],
-      "nullPointMode": "null",
+      "nullPointMode": "null as zero",
       "options": {},
       "percentage": false,
       "pointradius": 2,
@@ -312,8 +317,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(opencensus_io_http_server_response_count_by_status_code{service=~\"$service\",http_status=~\"[4].*\"}[2m])) by (service) / sum(rate(opencensus_io_http_server_request_count{service=~\"$service\"}[2m])) by (service)",
+          "expr": "sum(rate(augury_opencensus_io_http_server_response_count_by_status_code{service=~\"$service\",http_status=~\"[4].*\"}[2m])) by (service) / sum(rate(augury_opencensus_io_http_server_request_count{service=~\"$service\"}[2m])) by (service)",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
           "refId": "A"
         }
@@ -338,11 +344,12 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "decimals": 1,
+          "format": "percentunit",
           "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
+          "max": "1",
+          "min": "0",
           "show": true
         },
         {
@@ -470,7 +477,7 @@
       "lines": true,
       "linewidth": 1,
       "links": [],
-      "nullPointMode": "null",
+      "nullPointMode": "null as zero",
       "options": {},
       "percentage": false,
       "pointradius": 2,
@@ -484,11 +491,20 @@
         {
           "expr": "sum(rate(augury_opencensus_io_http_server_response_count_by_status_code{service=~\"$service\",http_status=~\"[5].*\"}[2m])) by (service) / sum(rate(augury_opencensus_io_http_server_request_count{service=~\"$service\"}[2m])) by (service)",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
           "refId": "A"
         }
       ],
-      "thresholds": [],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": true,
+          "line": true,
+          "op": "gt",
+          "yaxis": "left"
+        }
+      ],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
@@ -508,11 +524,12 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "decimals": 1,
+          "format": "percentunit",
           "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
+          "max": "1",
+          "min": "0",
           "show": true
         },
         {
@@ -671,10 +688,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(opencensus_io_http_server_response_count_by_status_code{service=~\"$service\",http_status!~\"[4-5].*\"}[2m])) by (service) / sum(rate(opencensus_io_http_server_request_count{service=~\"$service\"}[2m])) by (service)",
+          "expr": "sum(rate(augury_opencensus_io_http_server_response_count_by_status_code{service=~\"$service\",http_status!~\"[4-5].*\"}[2m])) by (service) / sum(rate(augury_opencensus_io_http_server_request_count{service=~\"$service\"}[2m])) by (service)",
           "format": "time_series",
           "instant": false,
-          "interval": "10s",
+          "interval": "",
           "intervalFactor": 1,
           "legendFormat": "{{ $service }}",
           "metric": "container_memory_usage:sort_desc",
@@ -704,11 +721,12 @@
       },
       "yaxes": [
         {
+          "decimals": 1,
           "format": "percentunit",
           "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
+          "max": "1",
+          "min": "0",
           "show": true
         },
         {
@@ -953,6 +971,7 @@
       {
         "allValue": null,
         "current": {
+          "tags": [],
           "text": "backend",
           "value": "backend"
         },
@@ -999,11 +1018,6 @@
           },
           {
             "selected": false,
-            "text": "insights-handler",
-            "value": "insights-handler"
-          },
-          {
-            "selected": false,
             "text": "iot-service",
             "value": "iot-service"
           },
@@ -1043,14 +1057,14 @@
             "value": "algo-anomalies"
           }
         ],
-        "query": "frontend,apigateway,backend,autocomplete,feature-switcher,feeds,file-server,insights-handler,iot-service,media-generator,messages,microservice-anomalies,microservice-algo-features,oauth2-internal,reports,algo-anomalies",
+        "query": "frontend,apigateway,backend,autocomplete,feature-switcher,feeds,file-server,iot-service,media-generator,messages,microservice-anomalies,microservice-algo-features,oauth2-internal,reports,algo-anomalies",
         "skipUrlSync": false,
         "type": "custom"
       }
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {
@@ -1081,5 +1095,5 @@
   "timezone": "browser",
   "title": "Service Monitoring",
   "uid": "-V9MvsdWk",
-  "version": 18
+  "version": 7
 }
