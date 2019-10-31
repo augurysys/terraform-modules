@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1569306097190,
+  "iteration": 1572513406016,
   "links": [],
   "panels": [
     {
@@ -312,7 +312,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(opencensus_io_http_server_response_count_by_status_code{service=~\"$service\",http_status=~\"[4].*\"}[2m])) by (service) / sum(rate(opencensus_io_http_server_request_count{service=~\"$service\"}[2m])) by (service)",
+          "expr": "sum(rate(augury_opencensus_io_http_server_response_count_by_status_code{service=~\"$service\",http_status=~\"[4].*\"}[2m])) by (service) / sum(rate(augury_opencensus_io_http_server_request_count{service=~\"$service\"}[2m])) by (service)",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -953,8 +953,9 @@
       {
         "allValue": null,
         "current": {
-          "text": "backend",
-          "value": "backend"
+          "tags": [],
+          "text": "iot-service",
+          "value": "iot-service"
         },
         "hide": 0,
         "includeAll": false,
@@ -973,7 +974,7 @@
             "value": "apigateway"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "backend",
             "value": "backend"
           },
@@ -1003,7 +1004,7 @@
             "value": "insights-handler"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "iot-service",
             "value": "iot-service"
           },
@@ -1050,7 +1051,7 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-7d",
     "to": "now"
   },
   "timepicker": {
@@ -1081,5 +1082,5 @@
   "timezone": "browser",
   "title": "Service Monitoring",
   "uid": "-V9MvsdWk",
-  "version": 18
+  "version": 7
 }
