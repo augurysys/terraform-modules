@@ -47,10 +47,6 @@ resource "google_container_cluster" "default" {
     }    
   }
 
-  release_channel {
-    channel = "REGULAR"
-  }
-
   vertical_pod_autoscaling {
     enabled = true
   }
