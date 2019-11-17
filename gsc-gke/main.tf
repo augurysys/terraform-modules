@@ -40,4 +40,18 @@ resource "google_container_cluster" "default" {
   node_pool {
     name = "default-pool"
   }
+
+  maintenance_policy {
+    daily_maintenance_window {
+      start_time = "05:00"
+    }    
+  }
+
+  release_channel {
+    channel = "REGULAR"
+  }
+
+  vertical_pod_autoscaling {
+    enabled = true
+  }
 }
