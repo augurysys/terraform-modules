@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1559560698720,
+  "iteration": 1574346778837,
   "links": [],
   "panels": [
     {
@@ -45,12 +45,14 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
       "seriesOverrides": [],
+      "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
@@ -441,12 +443,14 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
       "seriesOverrides": [],
+      "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
@@ -595,8 +599,8 @@
           "defaultProject": "loading project...",
           "filters": [
             "resource.label.job_name",
-            "=",
-            "samples-pipeline"
+            "=~",
+            "samples-pipeline.*"
           ],
           "groupBys": [],
           "lastQuery": "aggregation.alignmentPeriod=+60s&aggregation.crossSeriesReducer=REDUCE_MEAN&aggregation.perSeriesAligner=ALIGN_INTERPOLATE&filter=metric.type=\"dataflow.googleapis.com/job/billable_shuffle_data_processed\"&interval.endTime=2019-03-31T09:15:40Z&interval.startTime=2019-03-31T08:15:40Z&view=FULL",
@@ -679,6 +683,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -765,6 +770,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -783,18 +789,162 @@
             "perSeriesAligner": "ALIGN_INTERPOLATE"
           },
           "aliasBy": "",
+          "alignOptions": [
+            {
+              "expanded": true,
+              "label": "Alignment options",
+              "options": [
+                {
+                  "label": "interpolate",
+                  "metricKinds": [
+                    "GAUGE"
+                  ],
+                  "text": "interpolate",
+                  "value": "ALIGN_INTERPOLATE",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "next older",
+                  "metricKinds": [
+                    "GAUGE"
+                  ],
+                  "text": "next older",
+                  "value": "ALIGN_NEXT_OLDER",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY",
+                    "DISTRIBUTION",
+                    "STRING",
+                    "VALUE_TYPE_UNSPECIFIED",
+                    "BOOL"
+                  ]
+                },
+                {
+                  "label": "min",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "min",
+                  "value": "ALIGN_MIN",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "max",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "max",
+                  "value": "ALIGN_MAX",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "mean",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "mean",
+                  "value": "ALIGN_MEAN",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "count",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "count",
+                  "value": "ALIGN_COUNT",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY",
+                    "BOOL"
+                  ]
+                },
+                {
+                  "label": "sum",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "sum",
+                  "value": "ALIGN_SUM",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY",
+                    "DISTRIBUTION"
+                  ]
+                },
+                {
+                  "label": "stddev",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "stddev",
+                  "value": "ALIGN_STDDEV",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "percent change",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "percent change",
+                  "value": "ALIGN_PERCENT_CHANGE",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                }
+              ]
+            }
+          ],
+          "alignmentPeriod": "stackdriver-auto",
+          "crossSeriesReducer": "REDUCE_MEAN",
           "defaultProject": "staging-eabb77f6",
           "expr": "",
           "filters": [
             "resource.label.job_name",
-            "=",
-            "samples-pipeline"
+            "=~",
+            "samples-pipeline.*"
           ],
           "format": "time_series",
+          "groupBys": [],
           "intervalFactor": 1,
+          "lastQuery": "",
+          "lastQueryError": "",
           "metric": "",
           "metricKind": "GAUGE",
           "metricType": "dataflow.googleapis.com/job/system_lag",
+          "perSeriesAligner": "ALIGN_INTERPOLATE",
           "project": {
             "id": "production-02cb28ec",
             "name": "production"
@@ -803,6 +953,7 @@
           "service": "dataflow.googleapis.com",
           "showAggregationOptions": false,
           "unit": "s",
+          "usedAlignmentPeriod": "",
           "valueType": "INT64"
         },
         {
@@ -813,15 +964,159 @@
             "perSeriesAligner": "ALIGN_INTERPOLATE"
           },
           "aliasBy": "",
+          "alignOptions": [
+            {
+              "expanded": true,
+              "label": "Alignment options",
+              "options": [
+                {
+                  "label": "interpolate",
+                  "metricKinds": [
+                    "GAUGE"
+                  ],
+                  "text": "interpolate",
+                  "value": "ALIGN_INTERPOLATE",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "next older",
+                  "metricKinds": [
+                    "GAUGE"
+                  ],
+                  "text": "next older",
+                  "value": "ALIGN_NEXT_OLDER",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY",
+                    "DISTRIBUTION",
+                    "STRING",
+                    "VALUE_TYPE_UNSPECIFIED",
+                    "BOOL"
+                  ]
+                },
+                {
+                  "label": "min",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "min",
+                  "value": "ALIGN_MIN",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "max",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "max",
+                  "value": "ALIGN_MAX",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "mean",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "mean",
+                  "value": "ALIGN_MEAN",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "count",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "count",
+                  "value": "ALIGN_COUNT",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY",
+                    "BOOL"
+                  ]
+                },
+                {
+                  "label": "sum",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "sum",
+                  "value": "ALIGN_SUM",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY",
+                    "DISTRIBUTION"
+                  ]
+                },
+                {
+                  "label": "stddev",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "stddev",
+                  "value": "ALIGN_STDDEV",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "percent change",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "percent change",
+                  "value": "ALIGN_PERCENT_CHANGE",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                }
+              ]
+            }
+          ],
+          "alignmentPeriod": "stackdriver-auto",
+          "crossSeriesReducer": "REDUCE_MEAN",
           "defaultProject": "staging-eabb77f6",
           "filters": [
             "resource.label.job_name",
-            "=",
-            "samples-pipeline"
+            "=~",
+            "samples-pipeline.*"
           ],
+          "groupBys": [],
+          "lastQuery": "",
+          "lastQueryError": "",
           "metric": "",
           "metricKind": "GAUGE",
           "metricType": "dataflow.googleapis.com/job/data_watermark_age",
+          "perSeriesAligner": "ALIGN_INTERPOLATE",
           "project": {
             "id": "production-02cb28ec",
             "name": "production"
@@ -830,6 +1125,7 @@
           "service": "dataflow.googleapis.com",
           "showAggregationOptions": false,
           "unit": "s",
+          "usedAlignmentPeriod": "",
           "valueType": "INT64"
         }
       ],
@@ -901,6 +1197,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -1062,8 +1359,8 @@
           "defaultProject": "staging-eabb77f6",
           "filters": [
             "resource.label.job_name",
-            "=",
-            "samples-pipeline",
+            "=~",
+            "samples-pipeline.*",
             "AND",
             "metric.label.pcollection",
             "=",
@@ -1152,6 +1449,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -1237,6 +1535,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -1423,23 +1722,168 @@
             "perSeriesAligner": "ALIGN_INTERPOLATE"
           },
           "aliasBy": "Ingested Samples",
+          "alignOptions": [
+            {
+              "expanded": true,
+              "label": "Alignment options",
+              "options": [
+                {
+                  "label": "interpolate",
+                  "metricKinds": [
+                    "GAUGE"
+                  ],
+                  "text": "interpolate",
+                  "value": "ALIGN_INTERPOLATE",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "next older",
+                  "metricKinds": [
+                    "GAUGE"
+                  ],
+                  "text": "next older",
+                  "value": "ALIGN_NEXT_OLDER",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY",
+                    "DISTRIBUTION",
+                    "STRING",
+                    "VALUE_TYPE_UNSPECIFIED",
+                    "BOOL"
+                  ]
+                },
+                {
+                  "label": "min",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "min",
+                  "value": "ALIGN_MIN",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "max",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "max",
+                  "value": "ALIGN_MAX",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "mean",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "mean",
+                  "value": "ALIGN_MEAN",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "count",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "count",
+                  "value": "ALIGN_COUNT",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY",
+                    "BOOL"
+                  ]
+                },
+                {
+                  "label": "sum",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "sum",
+                  "value": "ALIGN_SUM",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY",
+                    "DISTRIBUTION"
+                  ]
+                },
+                {
+                  "label": "stddev",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "stddev",
+                  "value": "ALIGN_STDDEV",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                },
+                {
+                  "label": "percent change",
+                  "metricKinds": [
+                    "GAUGE",
+                    "DELTA"
+                  ],
+                  "text": "percent change",
+                  "value": "ALIGN_PERCENT_CHANGE",
+                  "valueTypes": [
+                    "INT64",
+                    "DOUBLE",
+                    "MONEY"
+                  ]
+                }
+              ]
+            }
+          ],
+          "alignmentPeriod": "stackdriver-auto",
+          "crossSeriesReducer": "REDUCE_MEAN",
           "defaultProject": "staging-eabb77f6",
           "filters": [
             "resource.label.job_name",
             "=",
-            "samples-pipeline",
+            "samples-pipeline.*",
             "AND",
             "metric.label.pcollection",
             "=",
             "PubsubSubscriptionIngester/PubsubIO.Read/PubsubUnboundedSource.out0"
           ],
+          "groupBys": [],
+          "lastQuery": "",
+          "lastQueryError": "",
           "metric": "",
           "metricKind": "GAUGE",
           "metricType": "dataflow.googleapis.com/job/element_count",
+          "perSeriesAligner": "ALIGN_INTERPOLATE",
           "refId": "C",
           "service": "dataflow.googleapis.com",
           "showAggregationOptions": false,
           "unit": "1",
+          "usedAlignmentPeriod": "",
           "valueType": "INT64"
         }
       ],
@@ -1511,6 +1955,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -1584,7 +2029,9 @@
           "value": "Prometheus"
         },
         "hide": 0,
+        "includeAll": false,
         "label": null,
+        "multi": false,
         "name": "datasource",
         "options": [],
         "query": "prometheus",
@@ -1627,5 +2074,5 @@
   "timezone": "browser",
   "title": "Sample Ingestion",
   "uid": "fZFd-l3iz",
-  "version": 2
+  "version": 1
 }
