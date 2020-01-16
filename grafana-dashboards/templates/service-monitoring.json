@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1579090102382,
+  "iteration": 1579191901455,
   "links": [],
   "panels": [
     {
@@ -1136,5 +1136,5 @@
   "timezone": "browser",
   "title": "Service Monitoring",
   "uid": "-V9MvsdWk",
-  "version": 8
+  "version": 1
 }
