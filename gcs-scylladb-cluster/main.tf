@@ -1,17 +1,17 @@
 resource "google_compute_address" "scylladb" {
   count        = var.cluster_size
   project      = var.project
-  name         = format("scylladb-ip-%s-%d", var.scylla_dc, count.index + 1)
+  name         = format("scylladb-ip-%s-%d", var.scylla_dc, var.cluster_index_start + count.index + 1)
   region       = var.region
   address_type = "INTERNAL"
   subnetwork   = var.subnetwork
 }
 
 resource "google_compute_disk" "scylladb-data" {
-  count   = var.cluster_size
+  count   = var.local_ssds == 0 ? var.cluster_size : 0
   project = var.project
-  name    = format("scylladb-data-%s-%d", var.scylla_dc, count.index + 1)
-  zone    = format("%s-%s", var.region, element(split(",", var.zones), count.index % length(split(",", var.zones))))
+  name    = format("scylladb-data-%s-%d", var.scylla_dc, var.cluster_index_start + count.index + 1)
+  zone    = format("%s-%s", var.region, element(split(",", var.zones), (var.cluster_index_start + count.index) % length(split(",", var.zones))))
   size    = var.data_disk_size
   type    = "pd-ssd"
 }
@@ -19,11 +19,11 @@ resource "google_compute_disk" "scylladb-data" {
 resource "google_compute_instance" "scylladb" {
   count        = var.cluster_size
   project      = var.project
-  name         = format("scylladb-%s-%d", var.scylla_dc, count.index + 1)
+  name         = format("scylladb-%s-%d", var.scylla_dc, var.cluster_index_start + count.index + 1)
   machine_type = var.machine_type
-  zone         = format("%s-%s", var.region, element(split(",", var.zones), count.index % length(split(",", var.zones))))
+  zone         = format("%s-%s", var.region, element(split(",", var.zones), (var.cluster_index_start + count.index) % length(split(",", var.zones))))
 
-  allow_stopping_for_update = true
+  allow_stopping_for_update = var.local_ssds == 0 ? true : false
 
   boot_disk {
     initialize_params {
@@ -31,9 +31,19 @@ resource "google_compute_instance" "scylladb" {
     }
   }
 
-  attached_disk {
-    source      = element(google_compute_disk.scylladb-data.*.self_link, count.index)
-    device_name = "data"
+  dynamic "attached_disk" {
+    for_each = var.local_ssds == 0 ? [1] : []
+    content {
+      source      = element(google_compute_disk.scylladb-data.*.self_link, count.index)
+      device_name = "data"
+    }
+  }
+
+  dynamic "scratch_disk" {
+    for_each = var.local_ssds == 0 ? [] : range(var.local_ssds)
+    content {
+      interface = "NVME"
+    }
   }
 
   network_interface {
@@ -46,7 +56,8 @@ resource "google_compute_instance" "scylladb" {
   }
 
   metadata = {
-    dc = var.scylla_dc
+    dc         = var.scylla_dc
+    local_ssds = var.local_ssds
   }
 
   tags = ["scylladb", var.scylla_dc]
@@ -54,15 +65,4 @@ resource "google_compute_instance" "scylladb" {
   service_account {
     scopes = ["compute-ro"]
   }
-}
-
-locals {
-  base_seeds = join(",", slice(google_compute_address.scylladb.*.address, 0, 2))
-  seeds      = var.custom_seeds == "" ? local.base_seeds : join(",", list("${local.base_seeds}","${var.custom_seeds}"))
-}
-
-resource "google_compute_project_metadata_item" "scylladb_seeds" {
-  project = var.project
-  key     = format("scylladb-seeds-%s", var.scylla_dc)
-  value   = local.seeds
 }
