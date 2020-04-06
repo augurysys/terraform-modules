@@ -7,6 +7,14 @@ variable "cluster_size" {
   default = 3
 }
 
+variable "cluster_index_start" {
+  default = 0
+}
+
+variable "local_ssds" {
+  default = 0
+}
+
 variable "machine_type" {
   default = "n1-standard-8"
 }
