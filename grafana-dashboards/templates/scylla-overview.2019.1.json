@@ -126,7 +126,7 @@
             "tableColumn": "",
             "targets": [
                 {
-                    "expr": "count(up{job=\"prometheus-scylladb\", cluster=~\"$cluster|$^\"})",
+                    "expr": "count(up{job=\"prometheus-scylladb\", endpoint=\"metrics\", cluster=~\"$cluster|$^\"})",
                     "intervalFactor": 1,
                     "legendFormat": "Total Nodes",
                     "refId": "A",
@@ -214,7 +214,7 @@
             "tableColumn": "",
             "targets": [
                 {
-                    "expr": "count(scrape_samples_scraped{job=\"prometheus-scylladb\", cluster=~\"$cluster|$^\"}==0) OR vector(0)",
+                    "expr": "count(scrape_samples_scraped{job=\"prometheus-scylladb\", endpoint=\"metrics\", cluster=~\"$cluster|$^\"}==0) OR vector(0)",
                     "intervalFactor": 1,
                     "legendFormat": "Unreachable",
                     "refId": "A",
