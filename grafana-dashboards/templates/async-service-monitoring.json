@@ -56,7 +56,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(container_cpu_usage_seconds_total{pod_name=~\"$service-.*\"}[5m])) / min(kube_deployment_status_replicas_available{deployment=\"$service\"})",
+          "expr": "sum(rate(container_cpu_usage_seconds_total{pod=~\"$service-.*\"}[5m])) / min(kube_deployment_status_replicas_available{deployment=\"$service\"})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -144,7 +144,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "max(container_memory_usage_bytes{pod_name=~\"$service.*\",container_name!=\"POD\",image!=\"\"})",
+          "expr": "max(container_memory_usage_bytes{pod=~\"$service.*\",container_name!=\"POD\",image!=\"\"})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
