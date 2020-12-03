@@ -1,5 +1,5 @@
 resource "google_container_cluster" "default" {
-  provider           = "google-beta"
+  provider           = google-beta
   name               = var.name
   description        = "augury's ${var.name} kubernetes cluster on gcloud"
   location           = var.zone
@@ -34,7 +34,7 @@ resource "google_container_cluster" "default" {
   enable_legacy_abac = false
 
   lifecycle {
-    ignore_changes = ["node_pool", "master_auth", "network", "subnetwork"]
+    ignore_changes = [node_pool, master_auth, network, subnetwork]
   }
 
   node_pool {
@@ -44,7 +44,7 @@ resource "google_container_cluster" "default" {
   maintenance_policy {
     daily_maintenance_window {
       start_time = "05:00"
-    }    
+    }
   }
 
   vertical_pod_autoscaling {
