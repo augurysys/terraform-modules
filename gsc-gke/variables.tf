@@ -32,6 +32,6 @@ variable "cluster_ipv4_cidr_block" {}
 variable "services_ipv4_cidr_block" {}
 
 variable "master_authorized_networks_cidrs" {
-  type    = "list"
+  type    = list
   default = []
 }
