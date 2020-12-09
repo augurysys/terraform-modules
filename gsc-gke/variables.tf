@@ -17,10 +17,6 @@ variable "additional_zones" {
   ]
 }
 
-variable "default_max_pods_per_node" {
-  default = 110
-}
-
 variable "gke_version" {}
 
 variable "gke_master_username" {
