@@ -6,6 +6,7 @@ resource "google_container_cluster" "default" {
   min_master_version = var.gke_version
   network            = var.network
   subnetwork         = var.subnetwork
+  default_max_pods_per_node = var.default_max_pods_per_node
 
   node_locations = var.additional_zones
 
