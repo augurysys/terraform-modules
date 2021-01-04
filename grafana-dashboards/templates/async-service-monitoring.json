@@ -583,9 +583,14 @@
             "selected": false,
             "text": "algo-anomalies",
             "value": "algo-anomalies"
+          },
+          {
+            "selected": false,
+            "text": "microservice-field-jobs",
+            "value": "microservice-field-jobs"
           }
         ],
-        "query": "algo,eventhandler,backend,insights-handler,iot-service,message,oauth2,reports,algo-anomalies",
+        "query": "algo,eventhandler,backend,insights-handler,iot-service,message,oauth2,reports,algo-anomalies,microservice-field-jobs",
         "skipUrlSync": false,
         "type": "custom"
       }
