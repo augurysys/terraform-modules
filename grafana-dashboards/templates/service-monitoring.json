@@ -1074,6 +1074,11 @@
           },
           {
             "selected": false,
+            "text": "microservice-field-jobs",
+            "value": "microservice-field-jobs"
+          },
+          {
+            "selected": false,
             "text": "microservice-algo-features",
             "value": "microservice-algo-features"
           },
@@ -1098,7 +1103,7 @@
             "value": "detection-manager"
           }
         ],
-        "query": "frontend,apigateway,backend,autocomplete,feature-switcher,feeds,file-server,iot-service,media-generator,messages,microservice-anomalies,microservice-algo-features,oauth2-internal,reports,algo-anomalies,detection-manager",
+        "query": "frontend,apigateway,backend,autocomplete,feature-switcher,feeds,file-server,iot-service,media-generator,messages,microservice-anomalies,microservice-field-jobs,microservice-algo-features,oauth2-internal,reports,algo-anomalies,detection-manager",
         "skipUrlSync": false,
         "type": "custom"
       }
