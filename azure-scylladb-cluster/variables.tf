@@ -18,6 +18,10 @@ variable "machine_size" {
   default = "Standard_D2s_v3"
 }
 
+variable "os_disk_size_gb" {
+  default = 30
+}
+
 variable "managed_disk_size_gb" {
   default  = 40
 }

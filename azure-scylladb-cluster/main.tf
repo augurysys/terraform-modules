@@ -54,6 +54,7 @@ resource "azurerm_linux_virtual_machine" "scylladb" {
     name                 = format("scylladb-os-%s-%d", var.scylla_dc, var.cluster_index_start + count.index + 1)
     storage_account_type = "StandardSSD_LRS"
     caching              = "ReadWrite"
+    disk_size_gb         = var.os_disk_size_gb
   }
 
   provisioner "remote-exec" {
