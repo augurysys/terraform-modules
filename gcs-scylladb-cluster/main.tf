@@ -63,6 +63,6 @@ resource "google_compute_instance" "scylladb" {
   tags = ["scylladb", var.scylla_dc]
 
   service_account {
-    scopes = ["compute-ro"]
+    scopes = ["compute-ro","storage-full"]
   }
 }
